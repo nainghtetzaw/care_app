@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSpecialityQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_speciality_questions"
+        android:textColor="@color/black"
+        android:textSize="16dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSpecialityAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_baseline_lens_24"
+        android:drawablePadding="5dp"
+        android:layout_marginTop="10dp"
+        android:text="No"
+        android:textColor="@color/black"/>
+
+</LinearLayout>

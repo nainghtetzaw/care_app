@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvConsultRdy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_info_24"
+            android:text="@string/menu_ready_to_consult"
+            android:textColor="@color/blue"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:paddingTop="1dp"
+            android:drawablePadding="3dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAcceptedDoctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/tv_accepted_info"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:lineSpacingExtra="5dp"/>
+
+        <include layout="@layout/doctor_info_viewpod"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvStartConsultation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_start_consult"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

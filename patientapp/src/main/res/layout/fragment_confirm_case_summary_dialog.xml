@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.dialogs.ConfirmCaseSummaryDialogFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/doctor"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="အချက်အလက်များအားအတည်ပြုပေးပါ"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_textview"
+                android:text="လူနာအချက်အလက်များ"
+                android:textColor="@color/white"
+                android:paddingTop="6dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rViewConfirmGeneralInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_general_questions_and_answers" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_textview"
+                android:text="ရောဂါဆိုင်ရာမေးခွန်းများ"
+                android:textColor="@color/white"
+                android:paddingTop="6dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rViewConfirmSpecialityInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                tools:listitem="@layout/item_confirm_speciality_info"
+                tools:itemCount="5"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnConfirmStartConsultation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/rounded_component"
+                android:text="ချိန်းဆိုမှုပြုလုပ်မည်"
+                android:textColor="@color/white"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/grey_white"
+    tools:context=".fragments.ConsultationHistoryFragment">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Toolbar"
+        android:background="@color/white"
+        android:elevation="20dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivConsultationHistoryBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ivConsultationHistoryBack"
+            android:text="လူနာအချက်အလက်များ"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"/>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rViewConsultationList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        tools:listitem="@layout/item_consultation"/>
+
+</LinearLayout>

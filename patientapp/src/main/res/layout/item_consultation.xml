@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvConsultationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25/11/2020"
+            android:textSize="16dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="-20dp"/>
+
+        <include layout="@layout/doctor_info_viewpod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/idConsultationNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_message_24"
+                android:text="ဆေးမှတ်တမ်း"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:drawablePadding="5dp"
+                android:layout_marginStart="50dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/idConsultationMedicineList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_format_list_bulleted_24"
+                android:text="ဆေးညွန်း"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:drawablePadding="5dp"
+                android:layout_marginStart="70dp"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

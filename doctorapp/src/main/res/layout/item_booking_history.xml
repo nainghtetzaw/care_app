@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_marginTop="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardIvBookedPatientProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivBookedPatientProfile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/doctor_profile"
+                android:scaleType="centerCrop"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBookedPatientName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aung Aung"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_toEndOf="@id/cardIvBookedPatientProfile"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBookedPatientBd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_date_range_24"
+            android:drawablePadding="5dp"
+            android:text="14 Nov 2020"
+            android:gravity="center_vertical"
+            android:layout_below="@id/tvBookedPatientName"
+            android:layout_alignStart="@id/tvBookedPatientName"
+            android:layout_marginTop="5dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMessageBookedPatient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@id/tvBookedPatientBd"
+            android:background="@drawable/rounded_blue_btn"
+            android:text="စာပို့မည်"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/cardIvBookedPatientProfile"
+            android:layout_marginTop="20dp"
+            android:background="@color/grey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_below="@id/view">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBookedMedication"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="ဆေးမှတ်တမ်း"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBookedPrescription"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="ဆေးညွန်း"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBookedNote"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="မှတ်ချက်"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

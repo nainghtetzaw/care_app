@@ -1,0 +1,4 @@
+include ':doctorapp'
+include ':shared'
+include ':patientapp'
+rootProject.name = "DoctorApp"

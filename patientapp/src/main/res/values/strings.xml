@@ -1,0 +1,110 @@
+<resources>
+    <string name="app_name">DoctorApp</string>
+    <string name="menu_home">အမျိုးအစား</string>
+    <string name="menu_consultations">ချိန်းဆိုမှုများ</string>
+    <string name="menu_profile">ပရိုဖိုင်</string>
+    <string name="menu_ready_to_consult">ဆွေးနွေးမှုပြုလုပ်နိုင်ပါ‌ပြီ</string>
+    <string name="tv_accepted_info">ဆွေးနွေးမှုပြုလုပ်ရန် Dr.Naing မှ လက်ခံထားပါသည်။</string>
+    <string name="tv_doctor_name">Dr.Naing</string>
+    <string name="tv_speciality">Cardiology</string>
+    <string name="tv_doctor_info">Dr.Naing က 2020 ပြည့်နှစ်တွင်ဘွဲ့ရခဲ့ပြီး လက်ရှိတွင် ဆေးရုံတွင်လုပ်ကိုင်နေပါသည်။</string>
+    <string name="tv_start_consult"><u>စတင်ဆွေးနွေးမည်</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_recent_doctors">မကြာသေးခင်ကဆွေးနွေးမှုများ</string>
+    <string name="tv_specialities">ရောဂါအမျိုးအစားများ</string>
+    <string name="tv_fill_case_summary">လူနာအချက်အလက်များဖြည့်ပါ</string>
+    <string name="tv_general_questions">အထွေထွေမေးခွန်းများ</string>
+    <string name="tv_speciality_questions">ရောဂါဆိုင်ရာမေးခွန်းများ</string>
+    <string name="tv_one_time_questions">လူနာအမည်</string>
+    <string name="tv_case_answer">Aung Aung</string>
+    <string name="confirm_consultation">သွားဖက်ဆိုင်ရာဆရာဝန်နှင့် တိုင်ပင်ဆွေးနွေးရန် Consultation Request ပြုလုပ်မှာ သေချာပါသလား?</string>
+    <string name="tv_not_consult">မလုပ်တော့ပါ</string>
+    <string name="tv_confirm_consult">သေချာပါသည်</string>
+    <string name="tv_drlivery_time">ငွေပေးချေမှု အတည်ပြုပြီး နောက်တစ်ရက်မှ စတင်၍ ဆေးများကို လိုက်လံပို့ဆောင်မည် ဖြစ်ပါသည်။</string>
+
+    <string-array name="bloodTypes">
+        <item>A</item>
+        <item>B</item>
+        <item>O</item>
+        <item>AB</item>
+    </string-array>
+
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="days">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+    </string-array>
+
+    <string-array name="years">
+        <item>1995</item>
+        <item>1996</item>
+        <item>1997</item>
+        <item>1998</item>
+        <item>1999</item>
+        <item>2000</item>
+        <item>2001</item>
+        <item>2002</item>
+        <item>2003</item>
+        <item>2004</item>
+        <item>2005</item>
+        <item>2006</item>
+        <item>2007</item>
+        <item>2008</item>
+        <item>2009</item>
+        <item>2010</item>
+        <item>2011</item>
+        <item>2012</item>
+        <item>2013</item>
+        <item>2014</item>
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+        <item>2019</item>
+        <item>2020</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvConsultationMedicineName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Becozinc"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="အရေအတွက်"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ရက်အရေအတွက်"
+                android:layout_marginTop="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="အချိန်"
+                android:layout_marginTop="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Repeat"
+                android:layout_marginTop="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="မှတ်ချက်"
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 Tablet"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRoutine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Morning/Noon/Evening"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 Days"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRepeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Every Day"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="After Meal"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
