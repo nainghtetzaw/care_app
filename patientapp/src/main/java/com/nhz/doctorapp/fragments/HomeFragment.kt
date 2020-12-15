@@ -75,7 +75,7 @@ class HomeFragment : Fragment(),HomeView{
             mPresenter.getAcceptedConsultation(false)
 
             tvStartConsultation.setOnClickListener {
-                startActivity(ChatActivity.newIntent(context))
+                startActivity(ChatActivity.newIntent(consultationId!!,context))
             }
         }
     }

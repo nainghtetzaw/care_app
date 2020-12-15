@@ -327,7 +327,6 @@ object FirebaseApiImpl : FirebaseApi {
 
     override fun getConsultationPrescription(
             messageId: String,
-            medicineName : String,
             onSuccess: (prescription: List<PrescriptionVO>) -> Unit,
             onFailure: (message: String) -> Unit
     ) {
@@ -340,19 +339,11 @@ object FirebaseApiImpl : FirebaseApi {
                     val request = value?.documents ?: arrayListOf()
 
                     for (document in request){
-                        val prescription = PrescriptionVO()
                         val data = document.data
+                        val dataStr = Gson().toJson(data)
+                        val dataType = object : TypeToken<PrescriptionVO>(){}.type
 
-                        prescription.day = (data?.get("day") as Long).toInt()
-                        prescription.evening = (data["evening"] as Long).toInt()
-                        prescription.morning = (data["morning"] as Long).toInt()
-                        prescription.night = (data["night"] as Long).toInt()
-                        prescription.price = data["price"] as Float
-                        prescription.quantity = (data["quantity"] as Long).toInt()
-                        prescription.medicine = data["medicine"] as String
-                        prescription.time = data["time"] as String
-
-                        prescriptionList.add(prescription)
+                        prescriptionList.add(Gson().fromJson(dataStr,dataType))
                     }
 
                     onSuccess(prescriptionList)
@@ -375,13 +366,10 @@ object FirebaseApiImpl : FirebaseApi {
 
                     for(document in request){
                         val data = document.data
-                        val case = CaseSummaryVO()
+                        val dataStr = Gson().toJson(data)
+                        val dataType = object : TypeToken<CaseSummaryVO>(){}.type
 
-                        case.answer = data?.get("answer") as String
-                        case.question = data["question"] as String
-                        case.id = (data["id"] as Long).toInt()
-
-                        caseList.add(case)
+                        caseList.add(Gson().fromJson(dataStr,dataType))
                     }
                     onSuccess(caseList)
                 }
@@ -513,7 +501,7 @@ object FirebaseApiImpl : FirebaseApi {
     }
 
     override fun addConsultationCaseSummary(messageId: String, case: CaseSummaryVO) {
-        db.collection(consultations).document(messageId).collection(case_summary).add(case)
+        db.collection(consultations).document(messageId).collection(case_summary).document(case.id.toString()).set(case)
     }
 
     override fun addConsultationPrescription(messageId: String, prescription: PrescriptionVO) {
@@ -538,7 +526,7 @@ object FirebaseApiImpl : FirebaseApi {
     }
 
     override fun sendRequestedPatientCaseSummary(id: String, case: CaseSummaryVO) {
-        db.collection(consultation_requests).document(id).collection(case_summary).add(case)
+        db.collection(consultation_requests).document(id).collection(case_summary).document(case.id.toString()).set(case)
     }
 
     override fun deleteConsultationRequest(id: String) {

@@ -18,17 +18,16 @@ import kotlin.collections.HashMap
 class SpecialityQuestionsPresenterImpl : AbstractBasePresenter<SpecialityQuestionView>(),SpecialityQuestionsPresenter {
 
     private lateinit var consultationRequestId : String
-    private lateinit var patient : PatientVO
 
     override fun onUiReady(id : Int,oldOrNew : Boolean,context: Context, lifecycleOwner: LifecycleOwner) {
         consultationRequestId = UUID.randomUUID().toString()
         getSpecialityQuestions(id,context, lifecycleOwner)
     }
 
-    override fun showConfirmDialogAndSendAnswersToNetwork(data : HashMap<Int,CaseSummaryVO>) {
+    override fun showConfirmDialogAndSendAnswersToNetwork(data : List<CaseSummaryVO>) {
 
         data.forEach {
-            mModel.sendRequestedPatientCaseSummary(patient.userId,it.value)
+            mModel.sendRequestedPatientCaseSummary("72JXNg3bVUZ0FRyanMNiNm2WLPn1",it)
         }
         mView?.onStartConsultation(consultationRequestId)
     }
@@ -38,11 +37,10 @@ class SpecialityQuestionsPresenterImpl : AbstractBasePresenter<SpecialityQuestio
     }
 
     private fun makeConsultationRequest(specialityId: Int,oldOrNew: Boolean,lifecycleOwner: LifecycleOwner){
-        mModel.getPatientInfoFromDatabase().observe(lifecycleOwner, Observer {
-            patient = it
+        mModel.getPatientInfoFromDatabase().observe(lifecycleOwner, Observer {patient ->
             mModel.sendConsultationRequestPatient(
-                patient.userId,
-                ConsultationRequestVO(consultationRequestId, patient,specialityId,true,oldOrNew))
+                "72JXNg3bVUZ0FRyanMNiNm2WLPn1",
+                ConsultationRequestVO(consultationRequestId,patient ,specialityId,true,oldOrNew))
         })
     }
 
@@ -50,7 +48,6 @@ class SpecialityQuestionsPresenterImpl : AbstractBasePresenter<SpecialityQuestio
         mModel.getAllSpecialityQuestionsByIdAndSaveToDatabase(id,{
             mView?.showSpecialityQuestions(it)
         },{})
-        mModel.getSpecialitiesQuestionsFromDatabase()
     }
 
 }

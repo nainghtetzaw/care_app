@@ -7,5 +7,6 @@ interface PatientInfoView : BaseView {
 
     fun showGeneralAnswerData(data : List<CaseSummaryVO>)
     fun showSpecialityAnswerData(data: List<CaseSummaryVO>)
+    fun onClickStartConsultation(name : String,id: String,bd: String,image: String,consultationId : String)
 
 }

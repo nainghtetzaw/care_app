@@ -5,10 +5,10 @@ import android.widget.TextView
 import com.nhz.doctorapp.R
 import com.nhz.shared.data.vos.CaseSummaryVO
 
-class ChatSpecialityInfoViewHolder(itemview : View) : BaseViewHolder<CaseSummaryVO>(itemview) {
+class ChatPatientSpecialityInfoViewHolder(itemview : View): BaseViewHolder<CaseSummaryVO>(itemview) {
 
-    private val tvSpecialityQuestion = itemview.findViewById<TextView>(R.id.tvSpecialityQuestion)
-    private val tvSpecialityAnswer = itemview.findViewById<TextView>(R.id.tvSpecialityAnswer)
+    private val tvSpecialityQuestion : TextView = itemview.findViewById(R.id.tvSpecialityQuestion)
+    private val tvSpecialityAnswer : TextView = itemview.findViewById(R.id.tvSpecialityAnswer)
 
     override fun bindData(data: CaseSummaryVO) {
         mData = data

@@ -5,6 +5,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.nhz.doctorapp.R
 import com.nhz.doctorapp.views.viewholders.SpecialityQuestionsViewHolder
@@ -15,7 +16,7 @@ import com.nhz.shared.data.vos.SpecialityQuestionsVO
 class SpecialityQuestionsAdapter() : RecyclerView.Adapter<SpecialityQuestionsViewHolder>() {
 
     private var mData : MutableList<SpecialityQuestionsVO> = mutableListOf()
-    private var mCaseSummary : HashMap<Int,CaseSummaryVO> = hashMapOf()
+    private var mCaseSummary : MutableList<CaseSummaryVO> = mutableListOf()
     private lateinit var etSpecialityAnswer : EditText
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpecialityQuestionsViewHolder {
@@ -26,26 +27,18 @@ class SpecialityQuestionsAdapter() : RecyclerView.Adapter<SpecialityQuestionsVie
     override fun onBindViewHolder(holder: SpecialityQuestionsViewHolder, position: Int) {
         etSpecialityAnswer = holder.itemView.findViewById(R.id.etSpecialityAnswer)
         holder.bindData(mData[position])
-        etSpecialityAnswer.addTextChangedListener(object : TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                val value = mCaseSummary[position]
-                if (value != null){
-                    mCaseSummary[position] = CaseSummaryVO(
-                            mData[position].id,
-                            mData[position].question,
-                            etSpecialityAnswer.text.toString())
-                }
-            }
-
-        })
+        etSpecialityAnswer.doOnTextChanged { text, start, before, count ->
+            mCaseSummary.add(CaseSummaryVO(mData[position].id,mData[position].question,text.toString()))
+        }
+//        etSpecialityAnswer.doOnTextChanged { text, start, before, count ->
+//            val caseSummary = CaseSummaryVO(mData[position].id,mData[position].question,text.toString())
+//            mCaseSummary.find { it.id == caseSummary.id }?.let {
+//                mCaseSummary.remove(it)
+//                if (caseSummary.answer.isNotEmpty()){
+//                    mCaseSummary.add(it.copy(answer = caseSummary.answer))
+//                }
+//            } ?: mCaseSummary.add(caseSummary)
+//        }
     }
 
     override fun getItemCount(): Int {
@@ -57,7 +50,7 @@ class SpecialityQuestionsAdapter() : RecyclerView.Adapter<SpecialityQuestionsVie
         notifyDataSetChanged()
     }
 
-    fun getCaseSummary() : HashMap<Int,CaseSummaryVO>{
+    fun getCaseSummary() : List<CaseSummaryVO>{
         return mCaseSummary
     }
 

@@ -38,4 +38,13 @@
         android:textColor="@color/black"
         android:lineSpacingExtra="3dp"/>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMessageReachedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:34 AM"
+        android:layout_alignEnd="@id/tvMessage"
+        android:layout_below="@id/tvMessage"
+        android:layout_marginTop="5dp"/>
+
 </RelativeLayout>

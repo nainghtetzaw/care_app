@@ -49,7 +49,7 @@ class  HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
 
     private fun getConsultation(finished : Boolean){
         mModel.getUnfinishedConsultationFromNetwork("72JXNg3bVUZ0FRyanMNiNm2WLPn1",finished,{
-            val accepted = it.filter { consultation -> consultation.accept}
+            val accepted = it.filter { consultation -> consultation.accept && !consultation.finished}
             if (accepted.count() != 0){
                 accepted.forEach { consultationsVO ->
                     mView?.showAcceptedRequestViewPod()

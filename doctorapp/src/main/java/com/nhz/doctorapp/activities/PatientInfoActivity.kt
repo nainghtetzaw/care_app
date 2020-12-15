@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
@@ -26,6 +27,7 @@ class PatientInfoActivity : AppCompatActivity(),PatientInfoView {
     private lateinit var ivPatientInfoProfile : ImageView
     private lateinit var tvPatientInfoName : TextView
     private lateinit var tvPatientInfoBd : TextView
+    private lateinit var btnStartConversation : Button
 
     private lateinit var mGeneralLayoutManager : LinearLayoutManager
     private lateinit var mSpecialityLayoutManager : LinearLayoutManager
@@ -55,23 +57,26 @@ class PatientInfoActivity : AppCompatActivity(),PatientInfoView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_info)
 
-        rViewPatientGeneralInfo = findViewById(R.id.rViewPatientGeneralInfo)
-        rViewPatientSpecialityInfo = findViewById(R.id.rViewSpecialityInfo)
+        rViewPatientGeneralInfo = findViewById(R.id.rViewConfirmPatientGeneralInfo)
+        rViewPatientSpecialityInfo = findViewById(R.id.rViewConfirmSpecialityInfo)
         ivPatientInfoProfile = findViewById(R.id.ivPatientInfoProfile)
         tvPatientInfoName = findViewById(R.id.tvPatientInfoName)
         tvPatientInfoBd = findViewById(R.id.tvPatientInfoBd)
+        btnStartConversation = findViewById(R.id.btnStartConversation)
 
         setUpPresenter()
         setUpRecyclerView()
 
-        val patientName = intent.getStringExtra(PATIENT_NAME)
-        val patientId = intent.getStringExtra(PATIENT_ID)
-        val patientBd = intent.getStringExtra(PATIENT_BD)
-        val patientImage = intent.getStringExtra(PATIENT_IMAGE)
-        val consultationId = intent.getStringExtra(CONSULTATION_ID)
+        val patientName = intent.getStringExtra(PATIENT_NAME).toString()
+        val patientId = intent.getStringExtra(PATIENT_ID).toString()
+        val patientBd = intent.getStringExtra(PATIENT_BD).toString()
+        val patientImage = intent.getStringExtra(PATIENT_IMAGE).toString()
+        val consultationId = intent.getStringExtra(CONSULTATION_ID).toString()
 
-        mPresenter.onUiReady(patientId!!,consultationId!!,this,this)
-        setPatientInfo(patientName!!,patientBd!!,patientImage!!)
+        mPresenter.onUiReady(patientId,consultationId,this,this)
+        setPatientInfo(patientName,patientBd,patientImage)
+
+        btnStartConversation.setOnClickListener { mPresenter.navigateToChatActivity(patientName,patientId,patientBd,patientImage,consultationId) }
 
     }
 
@@ -108,6 +113,10 @@ class PatientInfoActivity : AppCompatActivity(),PatientInfoView {
     }
 
     override fun showSpecialityAnswerData(data: List<CaseSummaryVO>) {
-        mGeneralAdapter.addNewData(data.toMutableList())
+        mSpecialityAdapter.addNewData(data.toMutableList())
+    }
+
+    override fun onClickStartConsultation(name : String,id : String,bd : String,image : String,consultationId : String) {
+        startActivity(ChatActivity.newIntent(name,id,bd,image,consultationId,this))
     }
 }

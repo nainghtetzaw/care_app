@@ -142,7 +142,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rViewPatientGeneralInfo"
+                    android:id="@+id/rViewConfirmPatientGeneralInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -161,7 +161,7 @@
                     android:layout_marginStart="10dp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rViewSpecialityInfo"
+                    android:id="@+id/rViewConfirmSpecialityInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"

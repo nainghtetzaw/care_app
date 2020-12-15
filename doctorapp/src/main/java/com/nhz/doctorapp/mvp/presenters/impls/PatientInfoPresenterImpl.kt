@@ -8,18 +8,22 @@ import com.nhz.shared.mvp.presenters.AbstractBasePresenter
 
 class PatientInfoPresenterImpl : AbstractBasePresenter<PatientInfoView>(),PatientInfoPresenter {
     override fun onUiReady(patientId: String,consultationId: String,context: Context, lifecycleOwner: LifecycleOwner) {
-        getRequestedCaseSummary(patientId,consultationId)
+        getRequestedGeneralCaseSummary(patientId)
+        getRequestedSpecialityCaseSummary(patientId)
     }
 
-    override fun navigateToChatActivity() {
-
+    override fun navigateToChatActivity(name : String,id : String,bd : String,image : String,consultationId: String) {
+        mView?.onClickStartConsultation(name,id,bd,image,consultationId)
     }
 
-    private fun getRequestedCaseSummary(patientId : String,consultationId : String){
+    private fun getRequestedGeneralCaseSummary(patientId : String){
         mModel.getPatientGeneralAnswersAndSaveToDatabase(patientId,{
             mView?.showGeneralAnswerData(it)
         },{})
-        mModel.getRequestedPatientCaseSummaryAndSaveToDatabase(consultationId,{
+    }
+
+    private fun getRequestedSpecialityCaseSummary(patientId: String){
+        mModel.getRequestedPatientCaseSummaryAndSaveToDatabase(patientId,{
             mView?.showSpecialityAnswerData(it)
         },{})
     }

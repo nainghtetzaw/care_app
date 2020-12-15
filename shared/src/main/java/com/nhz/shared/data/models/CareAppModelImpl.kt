@@ -158,11 +158,10 @@ object CareAppModelImpl : BaseModel(),CareAppModel {
 
     override fun getConsultationPrescriptionAndSaveToDatabase(
         messageId: String,
-        medicineName: String,
         onSuccess: (prescription: List<PrescriptionVO>) -> Unit,
         onFailure: (message: String) -> Unit
     ) {
-        mFirebaseApi.getConsultationPrescription(messageId,medicineName,{
+        mFirebaseApi.getConsultationPrescription(messageId,{
             onSuccess(it)
             mDatabase.consultationPrescriptionDao().insertIntoConsultationPrescription(it)
         },onFailure)

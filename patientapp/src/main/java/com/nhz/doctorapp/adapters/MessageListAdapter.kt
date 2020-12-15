@@ -13,7 +13,7 @@ import com.nhz.shared.data.vos.LiveChatVO
 class MessageListAdapter : RecyclerView.Adapter<BaseViewHolder<LiveChatVO>>() {
 
     private var mData : MutableList<LiveChatVO> = mutableListOf()
-    private var mDoctorId : String = ""
+    private var mPatientId : String = ""
     private val VIEW_TYPE_SENDER = 1
     private val VIEW_TYPE_RECEIVER = 2
     private val VIEW_TYPE_MEDICINE = 3
@@ -44,8 +44,12 @@ class MessageListAdapter : RecyclerView.Adapter<BaseViewHolder<LiveChatVO>>() {
         }
     }
 
+    override fun getItemCount(): Int {
+        return mData.count()
+    }
+
     override fun getItemViewType(position: Int): Int {
-        return if (mData[position].sender_id == mDoctorId && mData[position].medicineList?.count() == 0){
+        return if (mData[position].sender_id == mPatientId && mData[position].medicineList?.count() == 0){
             VIEW_TYPE_SENDER
         }else if (mData[position].medicineList?.count() != 0){
             VIEW_TYPE_MEDICINE
@@ -54,16 +58,12 @@ class MessageListAdapter : RecyclerView.Adapter<BaseViewHolder<LiveChatVO>>() {
         }
     }
 
-    override fun getItemCount(): Int {
-        return mData.count()
-    }
-
     fun addNewData(data : MutableList<LiveChatVO>){
         mData = data
         notifyDataSetChanged()
     }
 
-    fun addDoctorId(doctorId : String){
-        mDoctorId = doctorId
+    fun addPatientId(id : String){
+        mPatientId = id
     }
 }

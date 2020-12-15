@@ -2,8 +2,11 @@ package com.nhz.shared.data.vos
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.nhz.shared.persistance.typeconverters.ListTypeConverter
 
 @Entity(tableName = "LiveChat")
+@TypeConverters(ListTypeConverter::class)
 data class LiveChatVO(
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0,
@@ -15,5 +18,6 @@ data class LiveChatVO(
     var receiver_id : String = "",
     var receiver_name : String = "",
     var receiver_image : String = "",
-    var timeStamp : Int = 0
+    var timeStamp : String = "",
+    var medicineList: List<String> ?= arrayListOf()
 )

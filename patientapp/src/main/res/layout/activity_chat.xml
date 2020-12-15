@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
-        android:layout_above="@id/linearLayout">
+        android:layout_above="@id/messageToolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,8 +73,6 @@
                 android:id="@+id/rViewMessageList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-
-            <include layout="@layout/chat_medicine_list_viewpod"/>
 
         </LinearLayout>
 
@@ -132,7 +130,7 @@
             app:cardCornerRadius="50dp">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/tvSendMessage"
+                android:id="@+id/ivSendMessage"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/ic_baseline_send_24"/>

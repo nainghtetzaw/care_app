@@ -61,7 +61,7 @@
                         android:textStyle="bold"/>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rViewGeneralInfo"
+                        android:id="@+id/rViewChatGeneralInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -78,7 +78,7 @@
                         android:layout_marginTop="20dp"/>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rViewSpecialityInfo"
+                        android:id="@+id/rViewChatSpecialityInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:listitem="@layout/item_speciality_info"

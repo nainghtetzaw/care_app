@@ -37,4 +37,13 @@
         android:textColor="@color/black"
         android:lineSpacingExtra="3dp"/>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvOtherMessageDeliveredTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:34 PM"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/tvOtherMessage"
+        android:layout_alignStart="@id/tvOtherMessage"/>
+
 </RelativeLayout>

@@ -8,6 +8,6 @@ import com.nhz.shared.mvp.presenters.BasePresenter
 interface PatientInfoPresenter : BasePresenter<PatientInfoView> {
 
     fun onUiReady(patientId : String,consultationId : String,context : Context,lifecycleOwner: LifecycleOwner)
-    fun navigateToChatActivity()
+    fun navigateToChatActivity(name : String,id : String,bd : String,image : String,consultationId: String)
 
 }

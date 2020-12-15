@@ -30,7 +30,7 @@ interface CareAppModel {
     fun getConsultationRequestedPatientAndSaveToDatabase(specialityId : Int , onSuccess : (requests : List<ConsultationRequestVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getFinishedConsultationsByDoctorIdAndSaveToDatabase(doctorId : String,onSuccess : (consultation : List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getFinishedConsultationsByPatientIdAndSaveToDatabase(patientId : String,onSuccess: (consultation: List<ConsultationsVO>) -> Unit,onFailure: (message: String) -> Unit)
-    fun getConsultationPrescriptionAndSaveToDatabase(messageId : String, medicineName : String, onSuccess: (prescription : List<PrescriptionVO>) -> Unit, onFailure: (message: String) -> Unit)
+    fun getConsultationPrescriptionAndSaveToDatabase(messageId : String, onSuccess: (prescription : List<PrescriptionVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getConsultationCaseSummaryAndSaveToDatabase(messageId: String, onSuccess: (case: List<CaseSummaryVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getRecentDoctorsAndSaveToDatabase(id : String, onSuccess: (doctors : List<DoctorVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getPatientGeneralAnswersAndSaveToDatabase(userId : String, onSuccess : (answers : List<CaseSummaryVO>) -> Unit,onFailure: (message: String) -> Unit)
