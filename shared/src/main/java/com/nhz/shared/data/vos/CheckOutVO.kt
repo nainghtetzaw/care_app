@@ -8,11 +8,11 @@ import com.nhz.shared.persistance.typeconverters.ConsultationPatientTypeConverte
 @Entity(tableName = "CheckOut")
 @TypeConverters(ConsultationPatientTypeConverter::class)
 data class CheckOutVO(
-    @PrimaryKey(autoGenerate = true)
-    var id : Int = 0,
-    var patient : PatientVO?= null,
-    var address : String = "",
-    var delivery_date : String = "",
-    var total_price : Float = 0f,
-    var total_quantity : Int = 0
+        @PrimaryKey(autoGenerate = true)
+        var id: Int = 0,
+        var patient: PatientVO?= null,
+        var address: String = "",
+        var delivery_date: String = "",
+        var total_price: Int = 0,
+        var total_quantity: Int = 0
 )

@@ -46,6 +46,15 @@ class ConfirmCaseSummaryDialogFragment : DialogFragment(),ConfirmCaseSummaryView
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val param = dialog?.window?.attributes?.apply {
+            width = ViewGroup.LayoutParams.MATCH_PARENT
+            height = ViewGroup.LayoutParams.WRAP_CONTENT
+        }
+        dialog?.window?.attributes = param
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_confirm_case_summary_dialog, container, false)
@@ -88,7 +97,7 @@ class ConfirmCaseSummaryDialogFragment : DialogFragment(),ConfirmCaseSummaryView
 
     override fun onStartRequest(id: String) {
         activity?.let {
-            startActivity(MainActivity.newIntent(id, it))
+            startActivity(MainActivity.newIntent(it))
         }
     }
 

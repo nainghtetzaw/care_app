@@ -43,7 +43,7 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(),HomePresenter {
             doctorInfo = doctor
             mView?.showDoctorInfo(doctor)
             mModel.getConsultationRequestedPatientAndSaveToDatabase(doctor.specialityId,{
-                val request = it.filter { request -> request.available }
+                val request = it.filter { request -> request.available || request.doctorId == doctor.userId }
                 mView?.showConsultationRequestList()
                 mView?.showConsultationRequestData(request)
             },{
@@ -57,7 +57,7 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(),HomePresenter {
             val finished = it.filter { consultation -> consultation.finished }
             if (finished.count() != 0){
                 mView?.showConsultationHistoryList()
-                mView?.showConsultationHistoryData(it)
+                mView?.showConsultationHistoryData(finished)
             }else {
                 mView?.hideConsultationHistoryList()
             }

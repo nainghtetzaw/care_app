@@ -25,6 +25,7 @@ class PatientInfoActivity : AppCompatActivity(),PatientInfoView {
     private lateinit var rViewPatientGeneralInfo : RecyclerView
     private lateinit var rViewPatientSpecialityInfo : RecyclerView
     private lateinit var ivPatientInfoProfile : ImageView
+    private lateinit var ivPatientInfoBack : ImageView
     private lateinit var tvPatientInfoName : TextView
     private lateinit var tvPatientInfoBd : TextView
     private lateinit var btnStartConversation : Button
@@ -60,6 +61,7 @@ class PatientInfoActivity : AppCompatActivity(),PatientInfoView {
         rViewPatientGeneralInfo = findViewById(R.id.rViewConfirmPatientGeneralInfo)
         rViewPatientSpecialityInfo = findViewById(R.id.rViewConfirmSpecialityInfo)
         ivPatientInfoProfile = findViewById(R.id.ivPatientInfoProfile)
+        ivPatientInfoBack = findViewById(R.id.ivPatientInfoBack)
         tvPatientInfoName = findViewById(R.id.tvPatientInfoName)
         tvPatientInfoBd = findViewById(R.id.tvPatientInfoBd)
         btnStartConversation = findViewById(R.id.btnStartConversation)
@@ -76,6 +78,10 @@ class PatientInfoActivity : AppCompatActivity(),PatientInfoView {
         mPresenter.onUiReady(patientId,consultationId,this,this)
         setPatientInfo(patientName,patientBd,patientImage)
 
+        ivPatientInfoBack.setOnClickListener {
+            startActivity(HomeActivity.newIntent(this))
+            finish()
+        }
         btnStartConversation.setOnClickListener { mPresenter.navigateToChatActivity(patientName,patientId,patientBd,patientImage,consultationId) }
 
     }

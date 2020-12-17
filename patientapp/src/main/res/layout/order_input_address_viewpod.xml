@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:text="တိုင်း/ပြည်နယ်"
             android:textColor="@color/black"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textSize="16dp"
             android:layout_below="@id/tvOrderAddressTitle"
             android:layout_marginStart="10dp"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="မြို့နယ်"
             android:textColor="@color/black"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textSize="16dp"
             android:layout_below="@id/tvOrderAddressTitle"
             android:layout_toEndOf="@id/tvOrderState"
@@ -63,6 +63,7 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="10dp"
+                android:gravity="center"
                 android:background="@drawable/rounded_stroke"/>
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -71,6 +72,7 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:layout_marginStart="10dp"
+                android:gravity="center"
                 android:background="@drawable/rounded_stroke"/>
 
         </LinearLayout>
@@ -81,13 +83,14 @@
             android:layout_height="wrap_content"
             android:text="လိပ်စာအပြည့်အစုံ"
             android:textColor="@color/black"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textSize="16dp"
             android:layout_below="@id/linearLayout"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"/>
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etInputAddress"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="@drawable/rounded_stroke"

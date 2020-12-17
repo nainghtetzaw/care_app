@@ -4,12 +4,15 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.nhz.doctorapp.R
 import com.nhz.doctorapp.adapters.ChatPatientGeneralInfoAdapter
 import com.nhz.doctorapp.adapters.ChatPatientSpecialityInfoAdapter
@@ -18,6 +21,7 @@ import com.nhz.doctorapp.mvp.presenters.ChatPresenter
 import com.nhz.doctorapp.mvp.presenters.impls.ChatPresenterImpl
 import com.nhz.doctorapp.mvp.views.ChatView
 import com.nhz.shared.data.vos.CaseSummaryVO
+import com.nhz.shared.data.vos.DoctorVO
 import com.nhz.shared.data.vos.LiveChatVO
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -34,6 +38,8 @@ class ChatActivity : AppCompatActivity(),ChatView {
     private lateinit var rViewSpecialityInfo : RecyclerView
     private lateinit var rViewMessageList : RecyclerView
     private lateinit var tvChatWatchMore : TextView
+    private lateinit var nestedScrollView: NestedScrollView
+    private lateinit var ivChatBack : ImageView
 
     private lateinit var mGeneralLayoutManager : LinearLayoutManager
     private lateinit var mSpecialityLayoutManager : LinearLayoutManager
@@ -43,13 +49,20 @@ class ChatActivity : AppCompatActivity(),ChatView {
     private lateinit var mMessageAdapter : MessageListAdapter
     private lateinit var mPresenter : ChatPresenter
 
+    private var doctorName : String? = ""
+    private var doctorImage : String? = ""
+
     companion object{
 
         const val CONSULTATION_ID = "CONSULTATION_ID"
+        const val DOCTOR_NAME = "DOCTOR_NAME"
+        const val DOCTOR_IMAGE = "DOCTOR_IMAGE"
 
-        fun newIntent(consultationId : String,context: Context) : Intent{
+        fun newIntent(consultationId : String,doctorName : String,doctorImage : String,context: Context) : Intent{
             return Intent(context, ChatActivity::class.java)
                     .putExtra(CONSULTATION_ID,consultationId)
+                    .putExtra(DOCTOR_NAME,doctorName)
+                    .putExtra(DOCTOR_IMAGE,doctorImage)
         }
     }
 
@@ -67,11 +80,18 @@ class ChatActivity : AppCompatActivity(),ChatView {
         rViewGeneralInfo = findViewById(R.id.rViewChatGeneralInfo)
         rViewSpecialityInfo = findViewById(R.id.rViewChatSpecialityInfo)
         tvChatWatchMore = findViewById(R.id.tvChatWatchMore)
+        nestedScrollView = findViewById(R.id.nestedScrollView)
+        ivChatBack = findViewById(R.id.ivChatBack)
         setUpPresenter()
         setUpRecyclerView()
 
         val consultationId = intent.getStringExtra(CONSULTATION_ID)
+        doctorName = intent.getStringExtra(DOCTOR_NAME)
+        doctorImage = intent.getStringExtra(DOCTOR_IMAGE)
+
         mPresenter.onUiReady(consultationId!!,this,this)
+
+        nestedScrollView.post { Runnable { nestedScrollView.fullScroll(View.FOCUS_DOWN) } }
 
         ivSendMessage.setOnClickListener {
             if(etInputText.text.isNotBlank() || etInputText.text.isNotEmpty()){
@@ -80,6 +100,11 @@ class ChatActivity : AppCompatActivity(),ChatView {
             }
         }
 
+        tvChatWatchMore.setOnClickListener {
+            startActivity(CaseSummaryActivity.newIntent(consultationId,this))
+        }
+
+        ivChatBack.setOnClickListener { finish() }
     }
 
     override fun showSpecialityQuestionAndAnswerData(data: List<CaseSummaryVO>) {
@@ -93,6 +118,21 @@ class ChatActivity : AppCompatActivity(),ChatView {
     override fun showMessageList(data: List<LiveChatVO>, patientId : String) {
         mMessageAdapter.addPatientId(patientId)
         mMessageAdapter.addNewData(data.toMutableList())
+    }
+
+    override fun setDoctorAndPatientInfo(patientName : String,patientBd : String){
+        tvChatPatientInfoName.text = patientName
+        tvChatPatientInfoBd.text = patientBd
+        tvChatDoctorName.text = doctorName
+        if (doctorImage != ""){
+            Glide.with(this)
+                    .load(doctorImage)
+                    .into(ivChatDoctorProfile)
+        }
+    }
+
+    override fun navigateToOrderMedicineActivity(consultationId: String) {
+        startActivity(OrderMedicinesActivity.newIntent(consultationId,this))
     }
 
     private fun setUpPresenter(){
@@ -112,7 +152,7 @@ class ChatActivity : AppCompatActivity(),ChatView {
         mMessageLayoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         mGeneralAdapter  = ChatPatientGeneralInfoAdapter()
         mSpecialityAdapter = ChatPatientSpecialityInfoAdapter()
-        mMessageAdapter = MessageListAdapter()
+        mMessageAdapter = MessageListAdapter(mPresenter)
 
         rViewGeneralInfo.layoutManager = mGeneralLayoutManager
         rViewSpecialityInfo.layoutManager = mSpecialityLayoutManager

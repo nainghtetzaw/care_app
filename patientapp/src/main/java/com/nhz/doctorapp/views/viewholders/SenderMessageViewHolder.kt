@@ -21,6 +21,6 @@ class SenderMessageViewHolder(itemview  : View):BaseViewHolder<LiveChatVO>(itemv
                     .into(ivMessageProfile)
         }
         tvMessage.text = data.message
-        tvMessageDeliveredTime.text = data.timeStamp
+        tvMessageDeliveredTime.text = data.time
     }
 }

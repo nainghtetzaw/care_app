@@ -200,8 +200,8 @@ object CareAppModelImpl : BaseModel(),CareAppModel {
         },onFailure)
     }
 
-    override fun getUnfinishedConsultationFromNetwork(userId : String,finished : Boolean, onSuccess: (consultation: List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit) {
-        mFirebaseApi.getUnfinishedConsultation(userId ,finished ,onSuccess,onFailure)
+    override fun getUnfinishedConsultationFromNetworkByPatientId(userId : String,finished : Boolean, onSuccess: (consultation: List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit) {
+        mFirebaseApi.getUnfinishedConsultationByPatientId(userId ,finished ,onSuccess,onFailure)
     }
 
     override fun getRequestedPatientCaseSummaryAndSaveToDatabase(
@@ -221,6 +221,10 @@ object CareAppModelImpl : BaseModel(),CareAppModel {
 
     override fun getAlwaysGeneralQuestionsFromNetwork(onSuccess: (questionList: List<GeneralQuestionsVO>) -> Unit, onFailure: (message: String) -> Unit) {
         mFirebaseApi.getAlwaysGeneralQuestionsList(onSuccess,onFailure)
+    }
+
+    override fun getUnfinishedConsultationFromNetworkByDoctorId(userId: String, finished: Boolean, onSuccess: (consultation: List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit) {
+        mFirebaseApi.getUnfinishedConsultationByDoctroId(userId,finished, onSuccess, onFailure)
     }
 
     override fun getMessageFromNetwork(
@@ -245,6 +249,10 @@ object CareAppModelImpl : BaseModel(),CareAppModel {
         onFailure: (message: String) -> Unit
     ) {
         mFirebaseApi.getCheckOutPrescription(userId,onSuccess, onFailure)
+    }
+
+    override fun getConsultationMedicalHistoryFromNetwork(messageId: String, onSuccess: (history: MedicalHistoryVO) -> Unit, onFailure: (message: String) -> Unit) {
+        mFirebaseApi.getConsultationMedicalHistory(messageId, onSuccess, onFailure)
     }
 
     override fun sendMessage(messageId: String, message: LiveChatVO) {
@@ -302,7 +310,15 @@ object CareAppModelImpl : BaseModel(),CareAppModel {
         mFirebaseApi.sendRequestedPatientCaseSummary(id, case)
     }
 
+    override fun addConsultationMedicalHistory(messageId: String, history: MedicalHistoryVO) {
+        mFirebaseApi.addConsultationMedicalHistory(messageId, history)
+    }
+
     override fun deleteConsultationRequest(id: String) {
         mFirebaseApi.deleteConsultationRequest(id)
+    }
+
+    override fun deleteMedicine(name: String, consultationId: String) {
+        mFirebaseApi.deleteMedicine(name,consultationId)
     }
 }

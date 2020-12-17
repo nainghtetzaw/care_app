@@ -14,11 +14,13 @@ interface FirebaseApi {
     fun getPatientGeneralAnswers(userId : String, onSuccess : (answers : List<CaseSummaryVO>) -> Unit,onFailure: (message: String) -> Unit)
     fun getConsultationRequests(specialityId : Int, onSuccess : (requests : List<ConsultationRequestVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getRequestedPatientsCaseSummary(id : String, onSuccess : (case : List<CaseSummaryVO>) -> Unit, onFailure: (message: String) -> Unit)
-    fun getUnfinishedConsultation(userId: String,finished : Boolean, onSuccess : (consultation : List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit)
+    fun getUnfinishedConsultationByDoctroId(userId: String, finished : Boolean, onSuccess : (consultation : List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit)
+    fun getUnfinishedConsultationByPatientId(userId: String, finished : Boolean, onSuccess : (consultation : List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getFinishedConsultationsByDoctorId(doctorId : String,onSuccess : (consultation : List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getFinishedConsultationsByPatientId (patientId : String,onSuccess: (consultation: List<ConsultationsVO>) -> Unit,onFailure: (message: String) -> Unit)
     fun getConsultationPrescription(messageId : String, onSuccess: (prescription : List<PrescriptionVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getConsultationCaseSummary(messageId: String, onSuccess: (case: List<CaseSummaryVO>) -> Unit, onFailure: (message: String) -> Unit)
+    fun getConsultationMedicalHistory(messageId : String,onSuccess : (history : MedicalHistoryVO) -> Unit,onFailure: (message: String) -> Unit)
     fun getMessage(messageId : String, onSuccess : (messages : List<LiveChatVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getRecentDoctors(userId : String, onSuccess: (doctors : List<DoctorVO>) -> Unit,onFailure: (message: String) -> Unit)
     fun getCheckOut(userId : String, onSuccess : (checkout : CheckOutVO) -> Unit,onFailure: (message: String) -> Unit)
@@ -32,6 +34,7 @@ interface FirebaseApi {
     fun addConsultation(consultation : ConsultationsVO)
     fun addConsultationCaseSummary(messageId : String , case : CaseSummaryVO)
     fun addConsultationPrescription(messageId : String, prescription: PrescriptionVO)
+    fun addConsultationMedicalHistory(messageId : String, history : MedicalHistoryVO)
     fun addPatientGeneralAnswers(userId : String, answers : CaseSummaryVO)
     fun checkOut(userId : String, checkout : CheckOutVO)
     fun checkOutPrescription(userId: String, prescription : PrescriptionVO)
@@ -39,4 +42,5 @@ interface FirebaseApi {
     fun sendRequestedPatientCaseSummary(id: String, case : CaseSummaryVO)
 
     fun deleteConsultationRequest(id : String)
+    fun deleteMedicine(name : String,consultationId : String)
 }

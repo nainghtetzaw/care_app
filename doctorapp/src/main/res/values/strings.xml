@@ -21,4 +21,13 @@
     <string name="tv_confirm_consult">သေချာပါသည်</string>
     <string name="tv_drlivery_time">ငွေပေးချေမှု အတည်ပြုပြီး နောက်တစ်ရက်မှ စတင်၍ ဆေးများကို လိုက်လံပို့ဆောင်မည် ဖြစ်ပါသည်။</string>
     <string name="tv_message_medicine_list">Medicine Recommendation</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    
+    <string-array name="day">
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+        <item>Year</item>
+    </string-array>
 </resources>

@@ -5,14 +5,14 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Prescription")
 data class PrescriptionVO(
-    @PrimaryKey(autoGenerate = true)
-    var id : Int = 0,
+    @PrimaryKey(autoGenerate = false)
     var medicine : String = "",
     var quantity : Int = 0,
-    var price : Float = 0f,
-    var day : Int = 0,
-    var morning : Int = 0,
-    var evening : Int = 0,
-    var night : Int = 0,
-    var time : String = ""
+    var price : Int = 0,
+    var day : String = "",
+    var morning : Boolean = false,
+    var evening : Boolean = false,
+    var night : Boolean = false,
+    var note : String = "",
+    var beforeOrAfter : Boolean = false
 )

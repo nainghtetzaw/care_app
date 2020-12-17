@@ -8,6 +8,6 @@ data class MedicinesVO(
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0,
     var name : String = "",
-    var price : Float = 0f,
+    var price : Int = 0,
     var quantity : Int = 0
 )

@@ -7,8 +7,8 @@ import com.nhz.shared.data.vos.CaseSummaryVO
 
 class ChatPatientGeneralInfoViewHolder(itemview : View) : BaseViewHolder<CaseSummaryVO>(itemview) {
 
-    private val tvCaseSummaryQuestions : TextView = itemview.findViewById(R.id.tvCaseSummaryQuestion)
-    private val tvCaseSummaryAnswer : TextView = itemview.findViewById(R.id.tvCaseSummaryAnswer)
+    private val tvCaseSummaryQuestions : TextView = itemview.findViewById(R.id.tvMedicineName)
+    private val tvCaseSummaryAnswer : TextView = itemview.findViewById(R.id.tvMedicinePrice)
 
     override fun bindData(data: CaseSummaryVO) {
         mData = data

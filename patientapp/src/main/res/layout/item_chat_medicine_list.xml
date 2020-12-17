@@ -32,7 +32,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_toEndOf="@id/cardMedicineMessageProfile"
-        android:background="@drawable/rounded_corner_component"
+        android:background="@drawable/rounded_corner_grey_white_stroke"
+        android:elevation="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp">
 
@@ -57,7 +58,7 @@
         <ListView
             android:id="@+id/listMedicineName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:divider="@color/white"
             android:dividerHeight="5dp"
             tools:listitem="@layout/item_medicine_name"
@@ -71,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/cardMedicineMessageProfile"
         android:layout_marginEnd="10dp"
+        android:layout_marginTop="8dp"
         android:layout_below="@id/linearLayout"
         android:background="@drawable/rounded_component"
         android:text="ဆေးညွန်းမှာယူမည်"

@@ -4,14 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nhz.doctorapp.R
+import com.nhz.doctorapp.delegates.ChatMedicineDelegate
 import com.nhz.doctorapp.views.viewholders.BaseViewHolder
 import com.nhz.doctorapp.views.viewholders.ChatMedicineViewHolder
 import com.nhz.doctorapp.views.viewholders.ReceiverMessageViewHolder
 import com.nhz.doctorapp.views.viewholders.SenderMessageViewHolder
 import com.nhz.shared.data.vos.LiveChatVO
 
-class MessageListAdapter : RecyclerView.Adapter<BaseViewHolder<LiveChatVO>>() {
+class MessageListAdapter(delegate : ChatMedicineDelegate) : RecyclerView.Adapter<BaseViewHolder<LiveChatVO>>() {
 
+    private var mDelegate : ChatMedicineDelegate = delegate
     private var mData : MutableList<LiveChatVO> = mutableListOf()
     private var mPatientId : String = ""
     private val VIEW_TYPE_SENDER = 1
@@ -29,7 +31,7 @@ class MessageListAdapter : RecyclerView.Adapter<BaseViewHolder<LiveChatVO>>() {
                 ReceiverMessageViewHolder(view)
             }else -> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.item_chat_medicine_list,parent,false)
-                ChatMedicineViewHolder(view)
+                ChatMedicineViewHolder(view,mDelegate)
             }
         }
     }

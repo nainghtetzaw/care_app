@@ -11,6 +11,7 @@ interface HomeView : BaseView {
     fun showRecentDoctorData(data : List<DoctorVO>)
     fun showConsultationAcceptedDoctor(doctor : DoctorVO)
     fun networkError(error : String)
+    fun onClickStartConsultation(consultationId : String,doctorName : String,doctorImage : String)
 
     fun hideAcceptedRequestViewPod()
     fun hideRecentDoctorList()

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.PrescribeMedicineFragmentDialog">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMedicineName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amoxicillin"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="normal"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvQuantityTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="အရေအတွက်"
+                android:textColor="@color/black"
+                android:layout_below="@id/tvMedicineName"
+                android:textSize="15dp"
+                android:layout_marginTop="15dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTotalDayTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="သောက်ရမည့်ရက်"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_alignBottom="@id/tvQuantityTitle"
+                android:layout_marginStart="60dp"
+                android:layout_toEndOf="@id/tvQuantityTitle"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etInputQuantity"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvQuantityTitle"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/rounded_corner_grey_white_stroke"
+                android:padding="10dp"
+                android:inputType="number"
+                android:gravity="center"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="-1dp"
+                app:cardCornerRadius="15dp"
+                android:layout_alignBottom="@id/etInputQuantity"
+                android:layout_alignStart="@id/tvTotalDayTitle">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    android:background="@drawable/rounded_corner_grey_white_stroke">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etInputTotalDay"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@color/white"
+                        android:inputType="number"
+                        android:gravity="center"/>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/grey"
+                        android:layout_weight="0.5"/>
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spinnerTotalDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:entries="@array/day"
+
+                        android:backgroundTint="@color/blue"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRoutine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etInputQuantity"
+                android:text="အကြိမ်အရေအတွက်"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_marginTop="14dp"/>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/tvRoutine"
+                android:layout_marginTop="14dp">
+                
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnMorning"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_grey_white_stroke"
+                    android:layout_marginEnd="5dp"
+                    android:text="မနက်"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNoon"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:text="နေ့"
+                    android:background="@drawable/rounded_corner_grey_white_stroke"
+                    android:layout_marginEnd="5dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNight"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_grey_white_stroke"
+                    android:layout_marginStart="5dp"
+                    android:text="ည"/>
+                
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBeforeAndAfterEat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ဆေးကို"
+                android:textColor="@color/black"
+                android:layout_below="@id/linearLayout"
+                android:layout_marginTop="14dp"/>
+
+            <LinearLayout
+                android:id="@+id/beforeAndAfterLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/tvBeforeAndAfterEat"
+                android:layout_marginTop="14dp"
+                android:weightSum="2">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnBeforeEat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_grey_white_stroke"
+                    android:text="အစာမစားမှီသောက်ရန်"
+                    android:textSize="12dp"
+                    android:layout_marginEnd="10dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAfterEat"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:text="အစာစားပြီး မှ သောက်ရန်"
+                    android:textSize="12dp"
+                    android:background="@drawable/rounded_corner_grey_white_stroke"/>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="မှတ်ချက်"
+                android:textColor="@color/black"
+                android:layout_below="@id/beforeAndAfterLayout"
+                android:layout_marginTop="14dp"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etInputNote"
+                android:layout_width="match_parent"
+                android:layout_height="108dp"
+                android:layout_below="@id/tvNote"
+                android:background="@drawable/rounded_corner_grey_white_stroke"
+                android:padding="10dp"
+                android:layout_marginTop="14dp"
+                android:gravity="top"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAdd"
+                android:layout_width="122dp"
+                android:layout_height="wrap_content"
+                android:text="ထည့်မည်"
+                android:textColor="@color/white"
+                android:layout_below="@id/etInputNote"
+                android:background="@drawable/rounded_corners_blue_button"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="14dp"/>
+
+        </RelativeLayout>
+
+</RelativeLayout>

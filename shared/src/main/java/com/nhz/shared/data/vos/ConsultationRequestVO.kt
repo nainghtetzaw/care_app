@@ -13,5 +13,6 @@ data class ConsultationRequestVO(
     var patient : PatientVO ?= null,
     var specialityId : Int = 0,
     var available : Boolean = false,
-    var old_or_new : Boolean = false
+    var old_or_new : Boolean = false,
+    var doctorId : String = ""
 )

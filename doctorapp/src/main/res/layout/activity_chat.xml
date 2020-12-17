@@ -56,6 +56,7 @@
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
@@ -101,13 +102,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner_light_blue"
-            android:text="ဆေးညွန်းများ"
+            android:text="ဆေးညွန်းမည်"
             android:textColor="@color/blue"
             android:layout_weight="1"
             android:layout_marginStart="10dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnMedicineHistory"
+            android:id="@+id/btnMedicalHistory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner_light_blue"
@@ -154,7 +155,7 @@
             android:layout_toEndOf="@id/cardAttachment"
             android:layout_toStartOf="@id/cardSendMessage"
             android:hint="ရေးသားပါ"
-            android:background="@drawable/rounded_white_stroke"
+            android:background="@drawable/rounded_grey_stroke"
             android:paddingStart="15dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"

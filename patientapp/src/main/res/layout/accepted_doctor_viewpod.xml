@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_baseline_info_24"
-            android:text="@string/menu_ready_to_consult"
+            android:text="ဆွေးနွေးမှုပြုလုပ်နိုင်ပါပြီ"
             android:textColor="@color/blue"
             android:textSize="15dp"
             android:textStyle="bold"

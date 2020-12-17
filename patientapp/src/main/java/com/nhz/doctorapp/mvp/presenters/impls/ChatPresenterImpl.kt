@@ -2,6 +2,9 @@ package com.nhz.doctorapp.mvp.presenters.impls
 
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
+import com.nhz.doctorapp.getCurrentDate
+import com.nhz.doctorapp.getCurrentTime
+import com.nhz.doctorapp.getTimeStamp
 import com.nhz.doctorapp.mvp.presenters.ChatPresenter
 import com.nhz.doctorapp.mvp.views.ChatView
 import com.nhz.shared.data.vos.DoctorVO
@@ -11,13 +14,15 @@ import com.nhz.shared.mvp.presenters.AbstractBasePresenter
 
 class ChatPresenterImpl : AbstractBasePresenter<ChatView>(),ChatPresenter {
 
-    private lateinit var doctor : DoctorVO
     private lateinit var patient : PatientVO
+    private lateinit var doctor : DoctorVO
     private var medicineList : MutableList<String> = mutableListOf()
+    private var mConsultationId : String = ""
 
     override fun onUiReady(consultationId: String, context: Context, lifecycleOwner: LifecycleOwner) {
-        getConsultationCaseSummaryAndPatientGeneralInfo(consultationId)
+        mConsultationId = consultationId
         getConsultationInfo(consultationId)
+        getConsultationCaseSummaryAndPatientGeneralInfo(consultationId)
         getMessageList(consultationId)
         getConsultationPrescription(consultationId)
     }
@@ -33,14 +38,21 @@ class ChatPresenterImpl : AbstractBasePresenter<ChatView>(),ChatPresenter {
                         receiver_id = doctor.userId,
                         receiver_name = doctor.name,
                         receiver_image = doctor.profileImage,
-                        timeStamp = timeStamp,
+                        timeStamp = getCurrentDate(),
+                        time = getCurrentTime(),
                         medicineList = medicineList
                 ))
     }
 
+    override fun onTapOrderMedicine() {
+        mView?.navigateToOrderMedicineActivity(mConsultationId)
+    }
+
+
     private fun getMessageList(consultationId: String){
         mModel.getPatientByPatientIdAndSaveToDatabase("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{patientVO ->
             patient = patientVO
+            mView?.setDoctorAndPatientInfo(patientVO.username,patientVO.date_of_birth)
             mModel.getMessageFromNetwork(consultationId,{liveChat ->
                 mView?.showMessageList(liveChat,patientVO.userId)
             },{})
@@ -57,9 +69,8 @@ class ChatPresenterImpl : AbstractBasePresenter<ChatView>(),ChatPresenter {
     }
 
     private fun getConsultationInfo(consultationId: String){
-        mModel.getUnfinishedConsultationFromNetwork("72JXNg3bVUZ0FRyanMNiNm2WLPn1",false,{
-            val accept = it.filter { consultation -> consultation.id == consultationId }
-            doctor = accept[0].doctor_info!!
+        mModel.getUnfinishedConsultationFromNetworkByPatientId("72JXNg3bVUZ0FRyanMNiNm2WLPn1",false,{ list ->
+            list.filter { consultation -> consultation.id == consultationId }.let { doctor = it[0].doctor_info!! }
         },{})
     }
 

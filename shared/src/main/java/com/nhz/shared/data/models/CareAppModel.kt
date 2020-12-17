@@ -38,10 +38,12 @@ interface CareAppModel {
 
     fun getOneTimeGeneralQuestionsFromNetwork(onSuccess: (questionList: List<GeneralQuestionsVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getAlwaysGeneralQuestionsFromNetwork(onSuccess: (questionList: List<GeneralQuestionsVO>) -> Unit, onFailure: (message: String) -> Unit)
-    fun getUnfinishedConsultationFromNetwork(userId : String,finished : Boolean, onSuccess : (consultation : List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit)
+    fun getUnfinishedConsultationFromNetworkByDoctorId(userId : String,finished : Boolean, onSuccess : (consultation : List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit)
+    fun getUnfinishedConsultationFromNetworkByPatientId(userId : String,finished : Boolean, onSuccess : (consultation : List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getMessageFromNetwork(messageId : String, onSuccess : (messages : List<LiveChatVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getCheckOutFromNetwork(userId : String, onSuccess : (checkout : CheckOutVO) -> Unit,onFailure: (message: String) -> Unit)
     fun getCheckOutPrescriptionFromNetwork(userId: String, onSuccess : (prescription : List<PrescriptionVO>) -> Unit, onFailure: (message: String) -> Unit)
+    fun getConsultationMedicalHistoryFromNetwork(messageId : String,onSuccess : (history : MedicalHistoryVO) -> Unit,onFailure: (message: String) -> Unit)
 
     fun sendMessage(messageId : String, message : LiveChatVO)
     fun prescribeMedicine(messageId : String,prescription : PrescriptionVO)
@@ -56,6 +58,8 @@ interface CareAppModel {
     fun checkOutPrescription(userId: String, prescription : PrescriptionVO)
     fun sendConsultationRequestPatient(id : String,consultationRequest : ConsultationRequestVO)
     fun sendRequestedPatientCaseSummary(id : String, case : CaseSummaryVO)
+    fun addConsultationMedicalHistory(messageId : String,history : MedicalHistoryVO)
 
     fun deleteConsultationRequest(id : String)
+    fun deleteMedicine(name : String,consultationId : String)
 }

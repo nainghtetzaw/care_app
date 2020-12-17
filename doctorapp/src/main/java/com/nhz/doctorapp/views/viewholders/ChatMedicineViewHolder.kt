@@ -17,6 +17,6 @@ class ChatMedicineViewHolder(itemview : View) : BaseViewHolder<LiveChatVO>(itemv
         mData = data
         val adapter = ArrayAdapter(itemView.context,R.layout.item_medicine_name,data.medicineList!!)
         listMedicineName.adapter = adapter
-        tvMessageDeliveredTime.text = data.timeStamp
+        tvMessageDeliveredTime.text = data.time
     }
 }

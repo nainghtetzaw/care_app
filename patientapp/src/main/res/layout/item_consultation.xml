@@ -38,7 +38,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/idConsultationNote"
+                android:id="@+id/tvConsultationNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_baseline_message_24"
@@ -51,7 +51,7 @@
                 android:layout_marginStart="50dp"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/idConsultationMedicineList"
+                android:id="@+id/tvConsultationMedicineList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_baseline_format_list_bulleted_24"

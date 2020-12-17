@@ -2,18 +2,24 @@ package com.nhz.doctorapp.mvp.presenters.impls
 
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
+import com.nhz.doctorapp.getCurrentDate
+import com.nhz.doctorapp.getCurrentTime
+import com.nhz.doctorapp.getTimeStamp
 import com.nhz.doctorapp.mvp.presenters.interfaces.ChatPresenter
 import com.nhz.doctorapp.mvp.views.ChatView
 import com.nhz.shared.data.vos.DoctorVO
 import com.nhz.shared.data.vos.LiveChatVO
 import com.nhz.shared.mvp.presenters.AbstractBasePresenter
+import java.util.*
 
 class ChatPresenterImpl : AbstractBasePresenter<ChatView>(),ChatPresenter {
 
     private lateinit var doctor : DoctorVO
+    private var conId : String = ""
     private var mMedicineList : MutableList<String> = mutableListOf()
 
     override fun onUiReady(patientId : String,consultationId: String,context: Context, lifecycleOwner: LifecycleOwner) {
+        conId = consultationId
         getConsultationCaseSummaryAndPatientGeneralInfo(patientId,consultationId)
         getConsultationPrescription(consultationId)
         getMessageList(consultationId)
@@ -22,7 +28,6 @@ class ChatPresenterImpl : AbstractBasePresenter<ChatView>(),ChatPresenter {
     override fun sendMessage(
             consultationId: String,
             message: String,
-            timeStamp : String,
             patientName : String,
             patientId : String,
             patientImage : String
@@ -35,8 +40,21 @@ class ChatPresenterImpl : AbstractBasePresenter<ChatView>(),ChatPresenter {
                 receiver_id = patientId,
                 receiver_name = patientName,
                 receiver_image = patientImage,
-                timeStamp = timeStamp,
+                timeStamp = getCurrentDate(),
+                time = getCurrentTime(),
                 medicineList = mMedicineList))
+    }
+
+    override fun navigateToMedicineList() {
+        mView?.startPrescription(doctor.specialityId,conId)
+    }
+
+    override fun navigateToSpecialityQuestionsActivity() {
+        mView?.openQuestions(doctor.specialityId,conId)
+    }
+
+    override fun navigateToMedicalHistoryActivity(patientName: String,patientBd : String) {
+        mView?.openMedicalHistory(conId,patientName, patientBd)
     }
 
     private fun getMessageList(consultationId: String){

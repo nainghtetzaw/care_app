@@ -11,6 +11,10 @@ import com.nhz.shared.mvp.presenters.AbstractBasePresenter
 
 class  HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
 
+    private var conId : String = ""
+    private var doctorName : String = ""
+    private var doctorImage: String = ""
+
     override fun onUiReady(context: Context, lifecycleOwner: LifecycleOwner) {
         mView?.hideAcceptedRequestViewPod()
         getSpecialitiesData(lifecycleOwner)
@@ -21,9 +25,14 @@ class  HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
         getConsultation(finished)
     }
 
+    override fun navigateToChatActivity() {
+        mView?.onClickStartConsultation(conId,doctorName,doctorImage)
+    }
+
     override fun onTapSpeciality(spciality: SpecialitiesVO,oldOrNew : Boolean) {
         mView?.showConfirmDialog(spciality.id,spciality.name,oldOrNew)
     }
+
 
     private fun getSpecialitiesData(lifecycleOwner: LifecycleOwner){
         mModel.getSpecialitiesListFromDatabase().observe(lifecycleOwner, Observer {
@@ -48,9 +57,12 @@ class  HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
     }
 
     private fun getConsultation(finished : Boolean){
-        mModel.getUnfinishedConsultationFromNetwork("72JXNg3bVUZ0FRyanMNiNm2WLPn1",finished,{
+        mModel.getUnfinishedConsultationFromNetworkByPatientId("72JXNg3bVUZ0FRyanMNiNm2WLPn1",finished,{
             val accepted = it.filter { consultation -> consultation.accept && !consultation.finished}
             if (accepted.count() != 0){
+                conId = accepted[0].id
+                doctorName = accepted[0].doctor_info?.name!!
+                doctorImage = accepted[0].doctor_info?.profileImage!!
                 accepted.forEach { consultationsVO ->
                     mView?.showAcceptedRequestViewPod()
                     consultationsVO.doctor_info?.let { doctor ->

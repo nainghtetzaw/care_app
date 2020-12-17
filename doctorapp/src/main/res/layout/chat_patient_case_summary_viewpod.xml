@@ -111,7 +111,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rViewChatSpecialityInfo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="140dp"
                 tools:listitem="@layout/item_patient_case_summary"
                 tools:itemCount="3"/>
 

@@ -27,13 +27,10 @@ object FirebaseApiImpl : FirebaseApi {
                         val result = value?.documents ?: arrayListOf()
 
                         for (document in result) {
-                            val speciality = SpecialitiesVO()
                             val data = document.data
-
-                            speciality.id = (data?.get("id") as Long).toInt()
-                            speciality.name = data["name"] as String
-                            speciality.icon = data["icon"] as String
-                            specialityList.add(speciality)
+                            val dataStr = Gson().toJson(data)
+                            val dataType = object : TypeToken<SpecialitiesVO>(){}.type
+                            specialityList.add(Gson().fromJson(dataStr,dataType))
                         }
                         onSuccess(specialityList)
                     }
@@ -258,7 +255,26 @@ object FirebaseApiImpl : FirebaseApi {
                 }
     }
 
-    override fun getUnfinishedConsultation(userId: String,finished : Boolean, onSuccess: (consultation: List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit) {
+    override fun getUnfinishedConsultationByDoctroId(userId: String, finished: Boolean, onSuccess: (consultation: List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit) {
+        db.collection(consultations).whereEqualTo("doctorId",userId)
+                .addSnapshotListener { value, error ->
+                    error?.let {
+                        onFailure(it.message ?: "There is no unfinish consultation.")
+                    } ?: kotlin.run {
+                        val request = value?.documents ?: arrayListOf()
+                        val consultationList = mutableListOf<ConsultationsVO>()
+                        for (document in request){
+                            val data = document.data
+                            val dataStr = Gson().toJson(data)
+                            val dataType = object : TypeToken<ConsultationsVO>(){}.type
+                            consultationList.add(Gson().fromJson(dataStr,dataType))
+                        }
+                        onSuccess(consultationList)
+                    }
+                }
+    }
+
+    override fun getUnfinishedConsultationByPatientId(userId: String, finished : Boolean, onSuccess: (consultation: List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit) {
         db.collection(consultations).whereEqualTo("patientId",userId)
                 .addSnapshotListener { value, error ->
                     error?.let {
@@ -376,12 +392,26 @@ object FirebaseApiImpl : FirebaseApi {
             }
     }
 
+    override fun getConsultationMedicalHistory(messageId: String, onSuccess: (history: MedicalHistoryVO) -> Unit, onFailure: (message: String) -> Unit) {
+        db.collection(consultations).document(messageId).collection(medical_history).document(messageId)
+                .addSnapshotListener { value, error ->
+                    error?.let {
+                        onFailure(it.message ?: "Please check your internet connection!")
+                    } ?: kotlin.run {
+                        val request = value?.data
+                        val dataStr = Gson().toJson(request)
+                        val dataType = object : TypeToken<MedicalHistoryVO>(){}.type
+                        onSuccess(Gson().fromJson(dataStr,dataType))
+                    }
+                }
+    }
+
     override fun getMessage(
             messageId: String,
             onSuccess: (messages: List<LiveChatVO>) -> Unit,
             onFailure: (message: String) -> Unit
     ) {
-        db.collection(consultations).document(messageId).collection(conversations)
+        db.collection(consultations).document(messageId).collection(conversations).orderBy("timeStamp")
                 .addSnapshotListener { value, error ->
                     val chatList : MutableList<LiveChatVO> = mutableListOf()
                     val request = value?.documents ?: arrayListOf()
@@ -389,7 +419,7 @@ object FirebaseApiImpl : FirebaseApi {
                     for (documents in request){
                         val data = documents.data
                         val dataStr = Gson().toJson(data)
-                        val dataType = object : TypeToken<LiveChatVO>() {}.type
+                        val dataType = object : TypeToken<LiveChatVO>(){}.type
 
                         chatList.add(Gson().fromJson(dataStr,dataType))
                     }
@@ -428,16 +458,10 @@ object FirebaseApiImpl : FirebaseApi {
                 error?.let {
                     onFailure(it.message ?: "Check your internet connection.")
                 } ?: kotlin.run {
-                    val checkout = CheckOutVO()
                     val data = value?.data
-
-                    checkout.address = data?.get("address") as String
-                    checkout.delivery_date = data["delivery_date"] as String
-                    checkout.patient = data["patient"] as PatientVO
-                    checkout.total_price = data["total_price"] as Float
-                    checkout.total_quantity = (data["total_quantity"] as Long).toInt()
-
-                    onSuccess(checkout)
+                    val dataStr = Gson().toJson(data)
+                    val dataType = object : TypeToken<CheckOutVO>(){}.type
+                    onSuccess(Gson().fromJson(dataStr,dataType))
                 }
             }
     }
@@ -456,19 +480,11 @@ object FirebaseApiImpl : FirebaseApi {
                     val request = value?.documents ?: arrayListOf()
 
                     for (document in request) {
-                        val prescription = PrescriptionVO()
                         val data = document.data
+                        val dataStr = Gson().toJson(data)
+                        val dataType = object : TypeToken<PrescriptionVO>(){}.type
 
-                        prescription.day = (data?.get("day") as Long).toInt()
-                        prescription.evening = (data["evening"] as Long).toInt()
-                        prescription.morning = (data["morning"] as Long).toInt()
-                        prescription.night = (data["night"] as Long).toInt()
-                        prescription.price = data["price"] as Float
-                        prescription.quantity = (data["quantity"] as Long).toInt()
-                        prescription.medicine = data["medicine"] as String
-                        prescription.time = data["time"] as String
-
-                        prescriptionList.add(prescription)
+                        prescriptionList.add(Gson().fromJson(dataStr,dataType))
                     }
                     onSuccess(prescriptionList)
                 }
@@ -492,7 +508,7 @@ object FirebaseApiImpl : FirebaseApi {
     }
 
     override fun addRecentDoctor(userId: String, doctor: DoctorVO) {
-        db.collection(patients).document(userId).collection(recent_doctors).add(doctor)
+        db.collection(patients).document(userId).collection(recent_doctors).document(doctor.userId).set(doctor)
     }
 
     override fun addConsultation(consultation : ConsultationsVO) {
@@ -506,6 +522,10 @@ object FirebaseApiImpl : FirebaseApi {
 
     override fun addConsultationPrescription(messageId: String, prescription: PrescriptionVO) {
         db.collection(consultations).document(messageId).collection(prescriptions).document(prescription.medicine).set(prescription)
+    }
+
+    override fun addConsultationMedicalHistory(messageId: String, history: MedicalHistoryVO) {
+        db.collection(consultations).document(messageId).collection(medical_history).document(messageId).set(history)
     }
 
     override fun addPatientGeneralAnswers(userId: String, answers: CaseSummaryVO) {
@@ -531,5 +551,9 @@ object FirebaseApiImpl : FirebaseApi {
 
     override fun deleteConsultationRequest(id: String) {
         db.collection(consultation_requests).document(id).delete()
+    }
+
+    override fun deleteMedicine(name: String,consultationId : String) {
+        db.collection(consultations).document(consultationId).collection(prescriptions).document(name).delete()
     }
 }

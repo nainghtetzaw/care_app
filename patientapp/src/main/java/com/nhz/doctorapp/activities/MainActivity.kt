@@ -23,11 +23,9 @@ class MainActivity : AppCompatActivity(),MainView{
     private lateinit var mPresenter : MainPresenter
 
     companion object{
-        private val CONSULTATION_ID = "CONSULTATION_ID"
 
-        fun newIntent(consultationId : String,context: Context) : Intent{
+        fun newIntent(context: Context) : Intent{
             return Intent(context,MainActivity::class.java)
-                    .putExtra(CONSULTATION_ID,consultationId)
         }
     }
 
@@ -38,9 +36,8 @@ class MainActivity : AppCompatActivity(),MainView{
 
         btnNavi = findViewById(R.id.btnNavi)
 
-        val consultationId = intent.getStringExtra(CONSULTATION_ID)
-        fragment1 = HomeFragment.newInstance(consultationId)
-        fragment2 = ConsultationHistoryFragment()
+        fragment1 = HomeFragment.newInstance()
+        fragment2 = ConsultationHistoryFragment.newFragment()
 
         identifyFragments()
 
@@ -71,17 +68,17 @@ class MainActivity : AppCompatActivity(),MainView{
         btnNavi.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.menuHome -> {
-                    supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment).commit()
+                    supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment1).commit()
                     activeFragment = fragment1
                     true
                 }
-//                R.id.menuConsultation -> {
-//                    supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment).commit()
-//                    activeFragment = fragment2
-//                    true
-//                }
+                R.id.menuConsultation -> {
+                    supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment2).commit()
+                    activeFragment = fragment2
+                    true
+                }
                 else -> {
-                    supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment).commit()
+                    supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment1).commit()
                     activeFragment = fragment1
                     true
                 }

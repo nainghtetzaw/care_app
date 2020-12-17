@@ -5,7 +5,7 @@
     android:orientation="horizontal">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvCaseSummaryQuestion"
+        android:id="@+id/tvMedicineName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_one_time_questions"
@@ -24,7 +24,7 @@
         android:layout_weight="1"/>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvCaseSummaryAnswer"
+        android:id="@+id/tvMedicinePrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

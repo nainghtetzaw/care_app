@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_margin="20dp"
-    tools:context=".fragments.CheckOutDialogFragment">
+    android:padding="20dp"
+    tools:context=".fragments.dialogs.CheckOutDialogFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
@@ -151,7 +152,8 @@
         android:layout_height="wrap_content"
         android:text="@string/tv_drlivery_time"
         android:textColor="@color/black"
-        android:textStyle="bold"
+        android:textStyle="normal"
+        android:lineSpacingExtra="5dp"
         android:layout_marginTop="20dp"/>
 
     <androidx.appcompat.widget.AppCompatButton

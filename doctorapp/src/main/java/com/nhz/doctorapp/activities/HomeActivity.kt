@@ -1,5 +1,7 @@
 package com.nhz.doctorapp.activities
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -30,6 +32,12 @@ class HomeActivity : AppCompatActivity(),HomeView {
     private lateinit var mConsultationHistoryLayoutManager : LinearLayoutManager
     private lateinit var mConsultationRequestAdapter : ConsultationRequestAdapter
     private lateinit var mConsultationHistoryAdapter : ConsultationHistoryAdapter
+
+    companion object{
+        fun newIntent(context : Context) : Intent{
+            return Intent(context,HomeActivity::class.java)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

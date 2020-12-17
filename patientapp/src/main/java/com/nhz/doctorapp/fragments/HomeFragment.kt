@@ -47,14 +47,9 @@ class HomeFragment : Fragment(),HomeView{
     private var consultationId : String? = ""
 
     companion object{
-        const val BUNDLE_CONSULTATION_ID = "BUNDLE_CONSULTATION_ID"
 
-        fun newInstance(consultationId : String?) : HomeFragment{
-            val bundle = Bundle()
-            bundle.putString(BUNDLE_CONSULTATION_ID,consultationId)
-            return HomeFragment().apply {
-                arguments = bundle
-            }
+        fun newInstance() : HomeFragment{
+            return HomeFragment()
         }
     }
 
@@ -75,14 +70,9 @@ class HomeFragment : Fragment(),HomeView{
             mPresenter.getAcceptedConsultation(false)
 
             tvStartConsultation.setOnClickListener {
-                startActivity(ChatActivity.newIntent(consultationId!!,context))
+                mPresenter.navigateToChatActivity()
             }
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        consultationId = arguments?.getString(BUNDLE_CONSULTATION_ID)
     }
 
     override fun onCreateView(
@@ -128,6 +118,12 @@ class HomeFragment : Fragment(),HomeView{
     override fun networkError(error: String) {
         activity?.let {
             Snackbar.make(CoordinatorLayout(it),error,Snackbar.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onClickStartConsultation(consultationId: String,doctorName : String,doctorImage : String) {
+        activity?.let {
+            startActivity(ChatActivity.newIntent(consultationId,doctorName,doctorImage,it))
         }
     }
 

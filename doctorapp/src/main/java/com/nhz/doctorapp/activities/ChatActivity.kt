@@ -5,9 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,13 +36,17 @@ class ChatActivity : AppCompatActivity(),ChatView {
     private lateinit var tvChatPatientInfoBd : TextView
     private lateinit var ivSendMessage : ImageView
     private lateinit var etInputMessage : EditText
+    private lateinit var btnPrescription : Button
+    private lateinit var btnSpecialitiesQuestions : Button
+    private lateinit var btnMedicalHistory : Button
+    private lateinit var ivChatBack : ImageView
+    private lateinit var nestedScrollView : NestedScrollView
 
     private lateinit var mSpecialityAdapter : ChatSpecialityInfoAdapter
     private lateinit var mGeneralAdapter : ChatGeneralInfoAdapter
     private lateinit var mMessageAdapter : MessageListAdapter
     private lateinit var mSpecialityLayoutManager : LinearLayoutManager
     private lateinit var mGeneralLayoutManager : LinearLayoutManager
-    private lateinit var mMedicineLayoutManager: LinearLayoutManager
     private lateinit var mMessageLayoutManager: LinearLayoutManager
     private lateinit var mPresenter : ChatPresenter
 
@@ -75,6 +81,11 @@ class ChatActivity : AppCompatActivity(),ChatView {
         ivChatPatientProfile = findViewById(R.id.ivChatPatientProfile)
         ivSendMessage = findViewById(R.id.ivSendMessage)
         etInputMessage = findViewById(R.id.etInputMessage)
+        btnPrescription = findViewById(R.id.btnPrescriptions)
+        btnSpecialitiesQuestions = findViewById(R.id.btnSpecialitiesQuestions)
+        btnMedicalHistory = findViewById(R.id.btnMedicalHistory)
+        ivChatBack = findViewById(R.id.ivChatBack)
+        nestedScrollView = findViewById(R.id.nestedScrollView)
         setUpPresenter()
         setUpRecyclerView()
 
@@ -89,15 +100,32 @@ class ChatActivity : AppCompatActivity(),ChatView {
             setPatientInfo(patientName!!,patientImage,patientBd!!)
         }
 
+        nestedScrollView.post { Runnable { nestedScrollView.fullScroll(View.FOCUS_DOWN) } }
+
         ivSendMessage.setOnClickListener {
             if (etInputMessage.text.isNotBlank() || etInputMessage.text.isNotEmpty()){
                 if (patientImage != null) {
-                    mPresenter.sendMessage(consultationId,etInputMessage.text.toString(),getTimeStamp(),patientName!!,patientId,patientImage)
+                    mPresenter.sendMessage(consultationId,etInputMessage.text.toString(),patientName!!,patientId,patientImage)
                 }
                 etInputMessage.text.clear()
             }
         }
 
+        ivChatBack.setOnClickListener {
+            finish()
+        }
+
+        btnPrescription.setOnClickListener {
+            mPresenter.navigateToMedicineList()
+        }
+
+        btnSpecialitiesQuestions.setOnClickListener {
+            mPresenter.navigateToSpecialityQuestionsActivity()
+        }
+
+        btnMedicalHistory.setOnClickListener {
+            mPresenter.navigateToMedicalHistoryActivity(patientName!!,patientBd!!)
+        }
     }
 
     override fun showSpecialityQuestionAndAnswerData(data: List<CaseSummaryVO>) {
@@ -113,15 +141,21 @@ class ChatActivity : AppCompatActivity(),ChatView {
         mMessageAdapter.addNewData(data.toMutableList())
     }
 
+    override fun startPrescription(specialityId: Int,consultationId: String) {
+        startActivity(MedicineListActivity.newIntent(specialityId,consultationId,this))
+    }
+
+    override fun openQuestions(specialityId: Int, consultationId: String) {
+        startActivity(SpecialityQuestionsActivity.newIntent(specialityId,consultationId,this))
+    }
+
+    override fun openMedicalHistory(consultationId: String,patientName: String,patientBd: String) {
+        startActivity(MedicalHistoryActivity.newIntent(consultationId,patientName,patientBd,this))
+    }
+
     private fun setUpPresenter(){
         mPresenter = ViewModelProviders.of(this).get(ChatPresenterImpl::class.java)
         mPresenter.initPresenter(this)
-    }
-
-    private fun getTimeStamp() : String {
-        val date = LocalTime.now()
-        val formatter = DateTimeFormatter.ofPattern("hh:mm a")
-        return date.format(formatter)
     }
 
     private fun setPatientInfo(name : String,image : String,bd : String){

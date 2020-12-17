@@ -4,7 +4,7 @@
     <string name="menu_consultations">ချိန်းဆိုမှုများ</string>
     <string name="menu_profile">ပရိုဖိုင်</string>
     <string name="menu_ready_to_consult">ဆွေးနွေးမှုပြုလုပ်နိုင်ပါ‌ပြီ</string>
-    <string name="tv_accepted_info">ဆွေးနွေးမှုပြုလုပ်ရန် Dr.Naing မှ လက်ခံထားပါသည်။</string>
+    <string name="tv_accepted_info">ဆွေးနွေးမှုပြုလုပ်ရန် မှလက်ခံထားပါသည်။</string>
     <string name="tv_doctor_name">Dr.Naing</string>
     <string name="tv_speciality">Cardiology</string>
     <string name="tv_doctor_info">Dr.Naing က 2020 ပြည့်နှစ်တွင်ဘွဲ့ရခဲ့ပြီး လက်ရှိတွင် ဆေးရုံတွင်လုပ်ကိုင်နေပါသည်။</string>
@@ -21,7 +21,7 @@
     <string name="confirm_consultation">သွားဖက်ဆိုင်ရာဆရာဝန်နှင့် တိုင်ပင်ဆွေးနွေးရန် Consultation Request ပြုလုပ်မှာ သေချာပါသလား?</string>
     <string name="tv_not_consult">မလုပ်တော့ပါ</string>
     <string name="tv_confirm_consult">သေချာပါသည်</string>
-    <string name="tv_drlivery_time">ငွေပေးချေမှု အတည်ပြုပြီး နောက်တစ်ရက်မှ စတင်၍ ဆေးများကို လိုက်လံပို့ဆောင်မည် ဖြစ်ပါသည်။</string>
+    <string name="tv_drlivery_time">‌ငွေပေးချေမှုအတည်ပြုပြီး နောက်တစ်ရက်မှ စတင်၍ ဆေးများကိုပို့ဆောင်ပေးမည်ဖြစ်ပါသည်။</string>
 
     <string-array name="bloodTypes">
         <item>A</item>

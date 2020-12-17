@@ -10,7 +10,7 @@ import com.nhz.shared.data.vos.*
 import com.nhz.shared.persistance.daos.*
 
 @Database(entities = [CaseSummaryVO::class,CheckOutVO::class,ConsultationRequestVO::class,ConsultationsVO::class,DoctorVO::class,GeneralQuestionsVO::class,
-    LiveChatVO::class,MedicinesVO::class,PatientVO::class,PrescriptionVO::class,SpecialitiesVO::class,SpecialityQuestionsVO::class],version = 14,exportSchema = false)
+    LiveChatVO::class,MedicinesVO::class,PatientVO::class,PrescriptionVO::class,SpecialitiesVO::class,SpecialityQuestionsVO::class,MedicalHistoryVO::class],version = 26,exportSchema = false)
 abstract class CareAppDatabase : RoomDatabase() {
 
     companion object {
@@ -47,4 +47,5 @@ abstract class CareAppDatabase : RoomDatabase() {
     abstract fun recentDoctorDao() : RecentDoctorDao
     abstract fun patientGeneralAnswersDao() : PatientGeneralAnswersDao
     abstract fun requestedPatientCaseSummaryDao() : RequestedPatientCaseSummaryDao
+    abstract fun medicalHistoryDao() : MedicalHistoryDao
 }

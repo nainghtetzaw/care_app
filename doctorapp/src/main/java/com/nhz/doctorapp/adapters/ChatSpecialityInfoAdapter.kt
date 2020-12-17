@@ -12,7 +12,7 @@ class ChatSpecialityInfoAdapter : BaseAdapter<CaseSummaryVO,ChatSpecialityInfoVi
         parent: ViewGroup,
         viewType: Int
     ): ChatSpecialityInfoViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_speciality_patient_info,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_patient_case_summary,parent,false)
         return ChatSpecialityInfoViewHolder(view)
     }
 }

@@ -11,5 +11,6 @@ interface HomePresenter : BasePresenter<HomeView>,HomeDelegates {
 
     fun onUiReady(context : Context,lifecycleOwner: LifecycleOwner)
     fun getAcceptedConsultation(finished : Boolean)
+    fun navigateToChatActivity()
 
 }

@@ -16,5 +16,5 @@ data class ConsultationsVO(
     var doctor_info: DoctorVO? = null,
     var patient_info: PatientVO? = null,
     var finished: Boolean = false,
-    var accept : Boolean = false,
+    var accept : Boolean = false
 )
