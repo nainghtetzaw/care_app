@@ -7,7 +7,7 @@
     app:cardCornerRadius="10dp"
     android:elevation="2dp">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <org.mmtextview.components.MMTextView
         android:id="@+id/tvQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -87,7 +87,7 @@
         android:paddingBottom="5dp"
         android:weightSum="3">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <org.mmtextview.components.MMButton
             android:id="@+id/btnSpecialitiesQuestions"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
             android:layout_weight="1"
             android:layout_marginStart="10dp" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <org.mmtextview.components.MMButton
             android:id="@+id/btnPrescriptions"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
             android:layout_weight="1"
             android:layout_marginStart="10dp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <org.mmtextview.components.MMButton
             android:id="@+id/btnMedicalHistory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

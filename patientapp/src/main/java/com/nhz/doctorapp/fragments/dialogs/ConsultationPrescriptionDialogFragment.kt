@@ -55,7 +55,7 @@ class ConsultationPrescriptionDialogFragment : DialogFragment(),ConsultationPres
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rViewConsultationMedicineList = view.findViewById(R.id.rViewConsultationList)
+        rViewConsultationMedicineList = view.findViewById(R.id.rViewConsultationMedicineList)
         btnClose = view.findViewById(R.id.btnClose)
         setUpPresenter()
         setUpRecyclerView()

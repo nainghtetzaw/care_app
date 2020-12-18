@@ -53,7 +53,7 @@
             android:layout_alignStart="@id/tvBookedPatientName"
             android:layout_marginTop="5dp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <org.mmtextview.components.MMButton
             android:id="@+id/btnMessageBookedPatient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             android:weightSum="3"
             android:layout_below="@id/view">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:id="@+id/tvBookedMedication"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -95,7 +95,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/grey"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:id="@+id/tvBookedPrescription"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -110,7 +110,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/grey"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:id="@+id/tvBookedNote"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"

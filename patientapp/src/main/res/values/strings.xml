@@ -22,6 +22,9 @@
     <string name="tv_not_consult">မလုပ်တော့ပါ</string>
     <string name="tv_confirm_consult">သေချာပါသည်</string>
     <string name="tv_drlivery_time">‌ငွေပေးချေမှုအတည်ပြုပြီး နောက်တစ်ရက်မှ စတင်၍ ဆေးများကိုပို့ဆောင်ပေးမည်ဖြစ်ပါသည်။</string>
+    <string name="tvLogOut"><u>အကောင့်မှထွက်မည်</u></string>
+    <string name="tvChangePassworf"><u>လျို့ဝှက်နံပေါတ်ပြောင်းလဲမည်</u></string>
+    <string name="tvSignUp"><u>Sign Up</u></string>
 
     <string-array name="bloodTypes">
         <item>A</item>

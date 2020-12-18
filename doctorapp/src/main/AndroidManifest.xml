@@ -12,20 +12,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".activities.MedicalHistoryActivity"></activity>
-        <activity android:name=".activities.SpecialityQuestionsActivity" />
-        <activity android:name=".activities.MedicineListActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".activities.ChatActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".activities.PatientInfoActivity" />
-        <activity android:name=".activities.HomeActivity">
+        <activity android:name=".activities.SignUpActivity"></activity>
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.EditProfileActivity" />
+        <activity android:name=".activities.MedicalHistoryActivity" />
+        <activity android:name=".activities.SpecialityQuestionsActivity" />
+        <activity
+            android:name=".activities.MedicineListActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activities.ChatActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".activities.PatientInfoActivity" />
+        <activity android:name=".activities.HomeActivity"></activity>
     </application>
 
 </manifest>

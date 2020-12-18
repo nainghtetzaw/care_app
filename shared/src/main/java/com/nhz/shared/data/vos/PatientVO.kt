@@ -8,6 +8,7 @@ data class PatientVO(
     @PrimaryKey(autoGenerate = false)
     var userId : String = "",
     var username : String = "",
+    var phoneNumber : Long = 0,
     var email : String = "",
     var date_of_birth : String = "",
     var deviceId : String = "",

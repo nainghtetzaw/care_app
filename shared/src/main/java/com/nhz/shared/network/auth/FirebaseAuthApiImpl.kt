@@ -42,14 +42,28 @@ object FirebaseAuthApiImpl : FirebaseAuthApi {
         }
     }
 
+    override fun logout() {
+        mFirebaseAuth.signOut()
+    }
+
     override fun getUserToken(): String {
         return mFirebaseAuth.currentUser?.uid.toString()
     }
 
-    override fun getDeviceId(){
+    override fun getUserEmail(): String {
+        return mFirebaseAuth.currentUser?.email.toString()
+    }
+
+    override fun getDeviceId() : String{
+        var id = ""
         FirebaseInstallations.getInstance().getToken(false).addOnCompleteListener{
-            Log.d("fbToken",it.result?.token.toString())
+            id = it.result?.token.toString()
         }
+        return id
+    }
+
+    override fun getUsername(): String {
+        return mFirebaseAuth.currentUser?.displayName.toString()
     }
 
 

@@ -30,7 +30,7 @@
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:id="@+id/tvDoctorName"
             android:layout_width="wrap_content"
             android:layout_height="17dp"
@@ -39,7 +39,7 @@
             android:textColor="@color/black"
             android:textStyle="bold" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:id="@+id/tvSpeciality"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

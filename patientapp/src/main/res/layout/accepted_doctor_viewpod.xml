@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:padding="15dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:id="@+id/tvConsultRdy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
             android:paddingTop="1dp"
             android:drawablePadding="3dp"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:id="@+id/tvAcceptedDoctor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
 
         <include layout="@layout/doctor_info_viewpod"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:id="@+id/tvStartConsultation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

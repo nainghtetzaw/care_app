@@ -50,7 +50,7 @@ class ChatPresenterImpl : AbstractBasePresenter<ChatView>(),ChatPresenter {
 
 
     private fun getMessageList(consultationId: String){
-        mModel.getPatientByPatientIdAndSaveToDatabase("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{patientVO ->
+        mModel.getPatientByPatientIdAndSaveToDatabase(mAuthModel.getUserToken(),{patientVO ->
             patient = patientVO
             mView?.setDoctorAndPatientInfo(patientVO.username,patientVO.date_of_birth)
             mModel.getMessageFromNetwork(consultationId,{liveChat ->
@@ -63,13 +63,13 @@ class ChatPresenterImpl : AbstractBasePresenter<ChatView>(),ChatPresenter {
         mModel.getConsultationCaseSummaryAndSaveToDatabase(consultationId,{
             mView?.showSpecialityQuestionAndAnswerData(it)
         },{})
-        mModel.getPatientGeneralAnswersAndSaveToDatabase("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{
+        mModel.getPatientGeneralAnswersAndSaveToDatabase(mAuthModel.getUserToken(),{
             mView?.showGeneralQuestionAndAnswerData(it)
         },{})
     }
 
     private fun getConsultationInfo(consultationId: String){
-        mModel.getUnfinishedConsultationFromNetworkByPatientId("72JXNg3bVUZ0FRyanMNiNm2WLPn1",false,{ list ->
+        mModel.getUnfinishedConsultationFromNetworkByPatientId(mAuthModel.getUserToken(),false,{ list ->
             list.filter { consultation -> consultation.id == consultationId }.let { doctor = it[0].doctor_info!! }
         },{})
     }

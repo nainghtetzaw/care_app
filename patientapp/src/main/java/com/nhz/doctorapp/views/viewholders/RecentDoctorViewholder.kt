@@ -4,12 +4,21 @@ import android.view.View
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.nhz.doctorapp.R
+import com.nhz.doctorapp.delegates.RecentDoctorDelegate
 import com.nhz.shared.data.vos.DoctorVO
 
-class RecentDoctorViewholder(itemview : View) : BaseViewHolder<DoctorVO>(itemview) {
+class RecentDoctorViewholder(itemview : View, val mDelegate : RecentDoctorDelegate) : BaseViewHolder<DoctorVO>(itemview) {
+
+    init {
+        itemview.setOnClickListener {
+            mData?.let {
+                mDelegate.onTapItem(it.userId,it.specialityId)
+            }
+        }
+    }
+
     override fun bindData(data: DoctorVO) {
         mData = data
-
         if (data.profileImage != ""){
             Glide.with(itemView.context)
                 .load(data.profileImage)

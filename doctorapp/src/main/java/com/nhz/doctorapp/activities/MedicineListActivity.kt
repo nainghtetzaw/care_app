@@ -122,10 +122,4 @@ class MedicineListActivity : AppCompatActivity(),PrescriptionMedicinesView {
         rViewPrescriptionMedicine.adapter = mAdapter
     }
 
-    private fun getTimeStamp() : String {
-        val date = LocalTime.now()
-        val formatter = DateTimeFormatter.ofPattern("hh:mm a")
-        return date.format(formatter)
-    }
-
 }

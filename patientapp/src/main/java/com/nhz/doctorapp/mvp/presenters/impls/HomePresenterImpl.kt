@@ -33,6 +33,10 @@ class  HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
         mView?.showConfirmDialog(spciality.id,spciality.name,oldOrNew)
     }
 
+    override fun onTapItem(doctorId: String,specialityId : Int) {
+        mView?.navigateToCaseSummaryFormActivity(doctorId, specialityId)
+    }
+
 
     private fun getSpecialitiesData(lifecycleOwner: LifecycleOwner){
         mModel.getSpecialitiesListFromDatabase().observe(lifecycleOwner, Observer {
@@ -42,7 +46,7 @@ class  HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
 
     private fun getRecentDoctors(lifecycleOwner: LifecycleOwner){
         //userId
-        mModel.getRecentDoctorsAndSaveToDatabase("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{
+        mModel.getRecentDoctorsAndSaveToDatabase(mAuthModel.getUserToken(),{
             if (it.count() != 0){
                 mView?.showRecentDoctorList()
                 mView?.showRecentDoctorData(it)
@@ -57,7 +61,7 @@ class  HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
     }
 
     private fun getConsultation(finished : Boolean){
-        mModel.getUnfinishedConsultationFromNetworkByPatientId("72JXNg3bVUZ0FRyanMNiNm2WLPn1",finished,{
+        mModel.getUnfinishedConsultationFromNetworkByPatientId(mAuthModel.getUserToken(),finished,{
             val accepted = it.filter { consultation -> consultation.accept && !consultation.finished}
             if (accepted.count() != 0){
                 conId = accepted[0].id

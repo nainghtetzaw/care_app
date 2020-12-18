@@ -17,30 +17,30 @@ import kotlin.collections.HashMap
 
 class SpecialityQuestionsPresenterImpl : AbstractBasePresenter<SpecialityQuestionView>(),SpecialityQuestionsPresenter {
 
-    private lateinit var consultationRequestId : String
+    private lateinit var mConsultationRequestId : String
 
-    override fun onUiReady(id : Int,oldOrNew : Boolean,context: Context, lifecycleOwner: LifecycleOwner) {
-        consultationRequestId = UUID.randomUUID().toString()
+    override fun onUiReady(id : Int,consultationId: String,context: Context, lifecycleOwner: LifecycleOwner) {
+        mConsultationRequestId = consultationId
         getSpecialityQuestions(id,context, lifecycleOwner)
     }
 
     override fun showConfirmDialogAndSendAnswersToNetwork(data : List<CaseSummaryVO>) {
 
         data.forEach {
-            mModel.sendRequestedPatientCaseSummary("72JXNg3bVUZ0FRyanMNiNm2WLPn1",it)
+            mModel.sendRequestedPatientCaseSummary(mAuthModel.getUserToken(),it)
         }
-        mView?.onStartConsultation(consultationRequestId)
+        mView?.onStartConsultation(mConsultationRequestId)
     }
 
-    override fun createConsultationRequest(id: Int, oldOrNew: Boolean,lifecycleOwner: LifecycleOwner) {
-        makeConsultationRequest(id,oldOrNew,lifecycleOwner)
+    override fun createConsultationRequest(id: Int,consultationId : String,doctorId : String,lifecycleOwner: LifecycleOwner) {
+        makeConsultationRequest(id,consultationId,doctorId,lifecycleOwner)
     }
 
-    private fun makeConsultationRequest(specialityId: Int,oldOrNew: Boolean,lifecycleOwner: LifecycleOwner){
+    private fun makeConsultationRequest(specialityId: Int,consultationId : String,doctorId: String,lifecycleOwner: LifecycleOwner){
         mModel.getPatientInfoFromDatabase().observe(lifecycleOwner, Observer {patient ->
             mModel.sendConsultationRequestPatient(
-                "72JXNg3bVUZ0FRyanMNiNm2WLPn1",
-                ConsultationRequestVO(consultationRequestId,patient ,specialityId,true,oldOrNew))
+                mAuthModel.getUserToken(),
+                ConsultationRequestVO(consultationId,patient ,specialityId,true,doctorId = doctorId))
         })
     }
 

@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <org.mmtextview.components.MMTextView
         android:id="@+id/tvPatientSpecialityQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,7 +11,7 @@
         android:textColor="@color/black"
         android:textSize="16dp"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <org.mmtextview.components.MMTextView
         android:id="@+id/tvPatientSpecialityAnswer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

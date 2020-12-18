@@ -52,7 +52,9 @@ class ConsultationHistoryFragment : Fragment(),ConsultationHistoryView {
         setUpRecyclerView()
 
         activity?.let {
-            mPresenter.onUiReady(it)
+            if (isAdded){
+                mPresenter.onUiReady(it)
+            }
         }
     }
 

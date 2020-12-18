@@ -78,7 +78,7 @@ class PrescriptionMedicinesPresenterImpl : AbstractBasePresenter<PrescriptionMed
     }
 
     private fun getDoctorInfo(){
-        mModel.getDoctorByDoctorIdAndSaveToDatabase("1234512345",{
+        mModel.getDoctorByDoctorIdAndSaveToDatabase(mAuthModel.getUserToken(),{
             doctor = it
         },{})
     }

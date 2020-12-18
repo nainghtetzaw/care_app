@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.nhz.doctorapp.R
 import com.nhz.doctorapp.activities.CaseSummaryFormActivity
+import java.util.*
 
 class ConfirmConsultationDialogFragment : DialogFragment() {
 
@@ -80,7 +81,7 @@ class ConfirmConsultationDialogFragment : DialogFragment() {
                 dismiss()
             }
             tvConfirm.setOnClickListener {
-                startActivity(CaseSummaryFormActivity.newIntent(id,oldOrNew,activity))
+                startActivity(CaseSummaryFormActivity.newIntent(id,UUID.randomUUID().toString(),"",activity))
                 dismiss()
             }
         }

@@ -16,12 +16,12 @@ class ConfirmCaseSummaryPresenterImpl : AbstractBasePresenter<ConfirmCaseSummary
 
     override fun onUiReady(id : String,context: Context, lifecycleOwner: LifecycleOwner) {
         getPatientGeneralQuestionsAndAnswers(lifecycleOwner)
-        getSpecialityQuestionsAndAnswers("72JXNg3bVUZ0FRyanMNiNm2WLPn1",lifecycleOwner)
+        getSpecialityQuestionsAndAnswers(mAuthModel.getUserToken(),lifecycleOwner)
     }
 
     override fun navigateToMainActivity(id: String,lifecycleOwner: LifecycleOwner) {
         mModel.getPatientInfoFromDatabase().observe(lifecycleOwner, Observer {
-            mModel.addConsultation(ConsultationsVO(id,"","72JXNg3bVUZ0FRyanMNiNm2WLPn1",DoctorVO(),it,false))
+            mModel.addConsultation(ConsultationsVO(id,"",mAuthModel.getUserToken(),DoctorVO(),it,false))
         })
         mCaseSummary.forEach {
             mModel.addConsultationCaseSummary(id,it)
@@ -30,7 +30,7 @@ class ConfirmCaseSummaryPresenterImpl : AbstractBasePresenter<ConfirmCaseSummary
     }
 
     private fun getPatientGeneralQuestionsAndAnswers(lifecycleOwner: LifecycleOwner){
-        mModel.getPatientGeneralAnswersAndSaveToDatabase("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{
+        mModel.getPatientGeneralAnswersAndSaveToDatabase(mAuthModel.getUserToken(),{
             mView?.showGeneralQuestionsAndAnswers(it)
         },{})
     }

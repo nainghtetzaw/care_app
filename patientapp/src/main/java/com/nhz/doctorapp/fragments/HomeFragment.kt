@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.nhz.doctorapp.activities.ChatActivity
 import com.nhz.doctorapp.R
+import com.nhz.doctorapp.activities.CaseSummaryActivity
+import com.nhz.doctorapp.activities.CaseSummaryFormActivity
 import com.nhz.doctorapp.adapters.RecentDoctorAdapter
 import com.nhz.doctorapp.adapters.SpecialitiesAdapter
 import com.nhz.doctorapp.fragments.dialogs.ConfirmConsultationDialogFragment
@@ -24,6 +26,7 @@ import com.nhz.doctorapp.mvp.presenters.impls.HomePresenterImpl
 import com.nhz.doctorapp.mvp.views.HomeView
 import com.nhz.shared.data.vos.DoctorVO
 import com.nhz.shared.data.vos.SpecialitiesVO
+import java.util.*
 
 class HomeFragment : Fragment(),HomeView{
 
@@ -59,18 +62,19 @@ class HomeFragment : Fragment(),HomeView{
         setUpRecyclerViews()
 
         tvRecentDoctorTitle = view.findViewById(R.id.tvRecentDoctorTitle)
+        tvStartConsultation = view.findViewById(R.id.tvStartConsultation)
         tvRecentDoctorTitle.visibility = View.GONE
 
         activity?.let { context ->
 
-            tvStartConsultation = context.findViewById(R.id.tvStartConsultation)
+            if (isAdded){
+                mPresenter.onUiReady(context,this)
 
-            mPresenter.onUiReady(context,this)
+                mPresenter.getAcceptedConsultation(false)
 
-            mPresenter.getAcceptedConsultation(false)
-
-            tvStartConsultation.setOnClickListener {
-                mPresenter.navigateToChatActivity()
+                tvStartConsultation.setOnClickListener {
+                    mPresenter.navigateToChatActivity()
+                }
             }
         }
     }
@@ -127,6 +131,12 @@ class HomeFragment : Fragment(),HomeView{
         }
     }
 
+    override fun navigateToCaseSummaryFormActivity(doctorId: String, specialityId: Int) {
+        activity?.let {
+            startActivity(CaseSummaryFormActivity.newIntent(specialityId,UUID.randomUUID().toString(),doctorId,it))
+        }
+    }
+
     override fun hideAcceptedRequestViewPod() {
         activity?.let {
             acceptedRequestViewPod = it.findViewById(R.id.acceptedRequestDoctorViewPod)
@@ -170,7 +180,7 @@ class HomeFragment : Fragment(),HomeView{
             mGridLayoutManager = GridLayoutManager(it,2)
             mLinearLayoutManager = LinearLayoutManager(it,LinearLayoutManager.HORIZONTAL,false)
 
-            mRecentDoctorAdapter = RecentDoctorAdapter()
+            mRecentDoctorAdapter = RecentDoctorAdapter(mPresenter)
             mSpecialitiesAdapter = SpecialitiesAdapter(mPresenter)
 
             rViewRecentDoctor.layoutManager = mLinearLayoutManager

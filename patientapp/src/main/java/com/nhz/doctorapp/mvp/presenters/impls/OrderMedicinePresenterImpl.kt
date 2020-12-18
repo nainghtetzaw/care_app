@@ -16,7 +16,7 @@ class OrderMedicinePresenterImpl : AbstractBasePresenter<OrderMedicineView>(),Or
     }
 
     override fun addCheckOut(address : String) {
-        mModel.getPatientByPatientIdAndSaveToDatabase("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{patient ->
+        mModel.getPatientByPatientIdAndSaveToDatabase(mAuthModel.getUserToken(),{patient ->
             mModel.checkOut(patient.userId, CheckOutVO(
                 patient = patient,
                 address = address,

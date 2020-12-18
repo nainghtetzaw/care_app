@@ -6,7 +6,7 @@ import com.nhz.shared.mvp.presenters.AbstractBasePresenter
 
 class CaseSummaryPresenterImpl : AbstractBasePresenter<CaseSummaryView>(),CaseSummaryPresenter {
     override fun onUiReady(consultationId: String) {
-        mModel.getPatientGeneralAnswersAndSaveToDatabase("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{
+        mModel.getPatientGeneralAnswersAndSaveToDatabase(mAuthModel.getUserToken(),{
             mView?.showGeneralInfo(it)
         },{})
         mModel.getConsultationCaseSummaryAndSaveToDatabase(consultationId,{

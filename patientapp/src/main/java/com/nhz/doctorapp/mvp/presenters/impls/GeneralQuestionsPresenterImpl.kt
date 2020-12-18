@@ -16,7 +16,7 @@ class GeneralQuestionsPresenterImpl : AbstractBasePresenter<GeneralQuestionsView
 
     override fun sendGeneralAnswers(data: List<CaseSummaryVO>) {
         data.forEach {
-            mModel.addPatientGeneralAnswers("72JXNg3bVUZ0FRyanMNiNm2WLPn1",it)
+            mModel.addPatientGeneralAnswers(mAuthModel.getUserToken(),it)
         }
     }
 
@@ -27,7 +27,7 @@ class GeneralQuestionsPresenterImpl : AbstractBasePresenter<GeneralQuestionsView
 
     private fun getGeneralQuestionsAndAnswers(lifecycleOwner: LifecycleOwner){
         //userid
-        mModel.getPatientGeneralAnswersAndSaveToDatabase("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{
+        mModel.getPatientGeneralAnswersAndSaveToDatabase(mAuthModel.getUserToken(),{
             val oneTimeAns = it.filter { case -> case.one_time }
             if (oneTimeAns.isNotEmpty()){
                 mView?.showQuestionsAndAnswersList()

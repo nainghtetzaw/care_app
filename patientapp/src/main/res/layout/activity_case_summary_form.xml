@@ -23,7 +23,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_fill_case_summary"
@@ -101,7 +101,7 @@
 
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_general_questions"
@@ -110,7 +110,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="26dp"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

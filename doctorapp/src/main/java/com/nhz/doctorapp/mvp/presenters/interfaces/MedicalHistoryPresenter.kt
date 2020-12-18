@@ -6,5 +6,6 @@ import com.nhz.shared.mvp.presenters.BasePresenter
 interface MedicalHistoryPresenter : BasePresenter<MedicalHistoryView> {
 
     fun addMedicalHistory(consultationId : String,date : String,note : String)
+    fun onUiReady(consultationId: String)
 
 }

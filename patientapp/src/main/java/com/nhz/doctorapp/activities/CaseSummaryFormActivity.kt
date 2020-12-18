@@ -20,12 +20,14 @@ class CaseSummaryFormActivity : AppCompatActivity() {
     companion object{
 
         const val SPECIALITY_ID = "SPECIALITY_ID"
-        const val OLD_OR_NEW = "OLD_OR_NEW"
+        const val CONSULTATION_ID = "CONSULTATION_ID"
+        const val DOCTOR_ID = "DOCTOR_ID"
 
-        fun newIntent(id : Int,oldOrNew : Boolean,context: Context) : Intent{
+        fun newIntent(id : Int,consultationId : String,doctorId : String,context: Context) : Intent{
             return Intent(context,CaseSummaryFormActivity::class.java)
                 .putExtra(SPECIALITY_ID,id)
-                .putExtra(OLD_OR_NEW,oldOrNew)
+                .putExtra(CONSULTATION_ID,consultationId)
+                .putExtra(DOCTOR_ID,doctorId)
         }
     }
 
@@ -37,9 +39,10 @@ class CaseSummaryFormActivity : AppCompatActivity() {
         ivCaseSpeciality = findViewById(R.id.ivCaseSpeciality)
 
         val specialityId = intent.getIntExtra(SPECIALITY_ID,0)
-        val oldOrNew = intent.getBooleanExtra(OLD_OR_NEW,false)
+        val consultationId = intent.getStringExtra(CONSULTATION_ID)
+        val doctorId = intent.getStringExtra(DOCTOR_ID)
 
-        supportFragmentManager.beginTransaction().add(R.id.fragmentContainer,GeneralQuestionsFragment.newInstance(specialityId,oldOrNew)).commit()
+        supportFragmentManager.beginTransaction().add(R.id.fragmentContainer,GeneralQuestionsFragment.newInstance(specialityId,consultationId!!,doctorId!!)).commit()
 
     }
 }

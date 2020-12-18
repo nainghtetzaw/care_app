@@ -1,5 +1,6 @@
 package com.nhz.shared.data.models
 
+import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import com.nhz.shared.data.vos.*
 
@@ -312,6 +313,14 @@ object CareAppModelImpl : BaseModel(),CareAppModel {
 
     override fun addConsultationMedicalHistory(messageId: String, history: MedicalHistoryVO) {
         mFirebaseApi.addConsultationMedicalHistory(messageId, history)
+    }
+
+    override fun uploadImage(
+        bitmap: Bitmap,
+        onSuccess: (image: String) -> Unit,
+        onFailure: (message: String) -> Unit
+    ) {
+        mFirebaseApi.uploadImage(bitmap, onSuccess, onFailure)
     }
 
     override fun deleteConsultationRequest(id: String) {

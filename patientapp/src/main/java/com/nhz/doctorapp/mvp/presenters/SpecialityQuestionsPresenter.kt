@@ -8,8 +8,8 @@ import com.nhz.shared.mvp.presenters.BasePresenter
 
 interface SpecialityQuestionsPresenter : BasePresenter<SpecialityQuestionView>{
 
-    fun onUiReady(id : Int,oldOrNew : Boolean,context: Context,lifecycleOwner: LifecycleOwner)
+    fun onUiReady(id : Int,consultationId: String,context: Context,lifecycleOwner: LifecycleOwner)
     fun showConfirmDialogAndSendAnswersToNetwork(data : List<CaseSummaryVO>)
-    fun createConsultationRequest(id : Int,oldOrNew: Boolean,lifecycleOwner: LifecycleOwner)
+    fun createConsultationRequest(id : Int,consultationId : String,doctorId : String,lifecycleOwner: LifecycleOwner)
 
 }

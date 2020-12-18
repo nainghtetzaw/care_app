@@ -13,7 +13,7 @@
             android:orientation="vertical"
             android:layout_margin="20dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="လူနာအချက်အလက်"
@@ -27,7 +27,7 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <org.mmtextview.components.MMTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -45,7 +45,7 @@
                     android:textAlignment="center"
                     android:layout_weight="1"/>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <org.mmtextview.components.MMTextView
                     android:id="@+id/tvChatPatientInfoName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <org.mmtextview.components.MMTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="မွေးနေ့"
@@ -80,7 +80,7 @@
                     android:textAlignment="center"
                     android:layout_weight="1" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <org.mmtextview.components.MMTextView
                     android:id="@+id/tvChatPatientInfoBd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 tools:listitem="@layout/item_general_info"
                 tools:itemCount="3"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ရောဂါဆိုင်ရာအချက်အလက်များ"
@@ -121,10 +121,10 @@
                 android:background="@color/grey"
                 android:layout_marginTop="8dp"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:id="@+id/tvChatWatchMore"
                 android:layout_width="wrap_content"
-                android:layout_height="15dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:drawableEnd="@drawable/ic_baseline_double_arrow_24"

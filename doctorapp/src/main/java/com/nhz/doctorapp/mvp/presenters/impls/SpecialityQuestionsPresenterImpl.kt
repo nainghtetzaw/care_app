@@ -44,7 +44,7 @@ class SpecialityQuestionsPresenterImpl : AbstractBasePresenter<SpecialityQuestio
     }
 
     private fun getDoctorData(){
-        mModel.getDoctorByDoctorIdAndSaveToDatabase("1234512345",{
+        mModel.getDoctorByDoctorIdAndSaveToDatabase(mAuthModel.getUserToken(),{
             doctor = it
         },{})
     }

@@ -7,7 +7,7 @@
         tools:context=".fragments.dialogs.MedicalHistoryDialogFragment"
         android:background="@color/grey_white">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_textview_black"
@@ -26,7 +26,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_one_time_questions"
@@ -44,7 +44,7 @@
                 android:textAlignment="center"
                 android:layout_weight="1"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:id="@+id/tvMedicalName"
                 android:layout_width="wrap_content"
                 android:layout_height="24dp"
@@ -63,7 +63,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="မွေးနေ့"
@@ -81,7 +81,7 @@
                 android:textAlignment="center"
                 android:layout_weight="1"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:id="@+id/tvMedicalBd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ဆွေးနွေးမှုပြုလုပ်သည့် ရက်စွဲ"
@@ -130,7 +130,7 @@
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ဆေးကုသမှုမှတ်တမ်း"
@@ -138,7 +138,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"/>
 
-        <TextView
+        <org.mmtextview.components.MMTextView
             android:id="@+id/tvInputMedicalHistory"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -152,7 +152,7 @@
             android:gravity="top"
             android:padding="15dp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <org.mmtextview.components.MMButton
             android:id="@+id/btnSaveMedicalHistory"
             android:layout_width="160dp"
             android:layout_height="wrap_content"

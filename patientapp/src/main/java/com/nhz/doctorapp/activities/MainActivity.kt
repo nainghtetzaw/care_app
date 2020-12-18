@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nhz.doctorapp.R
 import com.nhz.doctorapp.fragments.ConsultationHistoryFragment
 import com.nhz.doctorapp.fragments.HomeFragment
+import com.nhz.doctorapp.fragments.ProfileFragment
 import com.nhz.doctorapp.mvp.presenters.MainPresenter
 import com.nhz.doctorapp.mvp.presenters.impls.MainPresenterImpl
 import com.nhz.doctorapp.mvp.views.MainView
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity(),MainView{
 
     private lateinit var fragment1 : HomeFragment
     private lateinit var fragment2 : ConsultationHistoryFragment
+    private lateinit var fragment3 : ProfileFragment
     private lateinit var btnNavi : BottomNavigationView
     private lateinit var mPresenter : MainPresenter
 
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity(),MainView{
 
         fragment1 = HomeFragment.newInstance()
         fragment2 = ConsultationHistoryFragment.newFragment()
+        fragment3 = ProfileFragment.newInstance()
 
         identifyFragments()
 
@@ -51,13 +54,18 @@ class MainActivity : AppCompatActivity(),MainView{
 
     private fun identifyFragments(){
         supportFragmentManager.beginTransaction()
-                .add(R.id.fragmentContainer,fragment1)
-                .commit()
+            .add(R.id.fragmentContainer,fragment1)
+            .commit()
 
         supportFragmentManager.beginTransaction()
-                .add(R.id.fragmentContainer,fragment2)
-                .hide(fragment2)
-                .commit()
+            .add(R.id.fragmentContainer,fragment2)
+            .hide(fragment2)
+            .commit()
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragmentContainer,fragment3)
+            .hide(fragment3)
+            .commit()
 
         btnNavigationEventListener(fragment1)
     }
@@ -78,8 +86,8 @@ class MainActivity : AppCompatActivity(),MainView{
                     true
                 }
                 else -> {
-                    supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment1).commit()
-                    activeFragment = fragment1
+                    supportFragmentManager.beginTransaction().hide(activeFragment).show(fragment3).commit()
+                    activeFragment = fragment3
                     true
                 }
             }

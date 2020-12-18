@@ -8,14 +8,20 @@ import com.nhz.shared.mvp.views.BaseView
 
 interface HomeView : BaseView {
 
-    fun showConsultationRequestData(data : List<ConsultationRequestVO>)
+    fun showConsultationRequestData(data : List<ConsultationRequestVO>,doctorId : String)
     fun showConsultationHistoryData(data: List<ConsultationsVO>)
     fun showDoctorInfo(doctor : DoctorVO)
     fun navigateToPatientInfoActivity(patient : PatientVO,id : String)
+    fun showMedicalHistoryDialogFragment(consultationId : String,patientName : String,patientBd : String)
+    fun showCaseSummaryHistoryDialogFragment(consultationId: String,patientId : String)
+    fun showPrescriptionHistoryDialogFragment(consultationId: String)
+    fun showSetConsultationTimeFragmentDialog()
 
     fun showConsultationRequestList()
     fun hideConsultationRequestList()
     fun showConsultationHistoryList()
     fun hideConsultationHistoryList()
+    fun showEmpty()
+    fun hideEmpty()
 
 }

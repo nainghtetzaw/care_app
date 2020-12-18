@@ -82,5 +82,6 @@ dependencies {
     implementation "androidx.work:work-runtime:2.3.1"
 
     //Rxkotlin
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
     implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
 }

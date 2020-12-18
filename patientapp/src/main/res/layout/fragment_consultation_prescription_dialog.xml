@@ -3,20 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
+    android:padding="20dp"
     tools:context=".fragments.dialogs.ConsultationPrescriptionDialogFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/btnClose">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <org.mmtextview.components.MMTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ဆေးညွန်း"
@@ -35,22 +34,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                tools:itemCount="2"
                 tools:listitem="@layout/item_consultation_medicine_list" />
+
+            <org.mmtextview.components.MMButton
+                android:id="@+id/btnClose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ပိတ်မည်"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@drawable/rounded_component"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"/>
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnClose"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ပိတ်မည်"
-        android:layout_alignParentBottom="true"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:background="@drawable/rounded_component"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"/>
 
 </RelativeLayout>

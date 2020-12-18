@@ -23,7 +23,7 @@
             android:src="@drawable/ic_baseline_arrow_back_24"
             android:layout_centerVertical="true"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ဆေးညွန်းမည်"
@@ -69,7 +69,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <org.mmtextview.components.MMButton
         android:id="@+id/btnFinishConsultation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

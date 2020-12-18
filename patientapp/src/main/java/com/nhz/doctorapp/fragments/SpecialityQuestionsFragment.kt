@@ -28,17 +28,20 @@ class SpecialityQuestionsFragment : Fragment(),SpecialityQuestionView{
 
     private lateinit var mConfirmCaseSummaryDialogFragment : ConfirmCaseSummaryDialogFragment
     private var specialityId : Int = 0
-    private var oldOrNew : Boolean = false
+    private var consultationId : String = ""
+    private var doctorId : String = ""
 
     companion object{
 
         const val SPECIALITY_ID = "SPECIALITY_ID"
-        const val BUNDLE_OLD_OR_NEW = "BUNDLE_OLD_OR_NEW"
+        const val CONSULTATION_ID = "CONSULTATION_ID"
+        const val DOCTOR_ID = "DOCTOR_ID"
 
-        fun newInstance(specialityid : Int,oldOrNew : Boolean) : SpecialityQuestionsFragment{
+        fun newInstance(specialityid : Int,consultationId : String,doctorId : String) : SpecialityQuestionsFragment{
             val bundle = Bundle()
             bundle.putInt(SPECIALITY_ID,specialityid)
-            bundle.putBoolean(BUNDLE_OLD_OR_NEW,oldOrNew)
+            bundle.putString(CONSULTATION_ID,consultationId)
+            bundle.putString(DOCTOR_ID,doctorId)
             return SpecialityQuestionsFragment().apply {
                 arguments = bundle
             }
@@ -60,9 +63,9 @@ class SpecialityQuestionsFragment : Fragment(),SpecialityQuestionView{
 
         btnStartConsultation = view.findViewById(R.id.btnStartConsultation)
 
-        mPresenter.onUiReady(specialityId,oldOrNew,view.context,this)
+        mPresenter.onUiReady(specialityId,consultationId,view.context,this)
         btnStartConsultation.setOnClickListener {
-            mPresenter.createConsultationRequest(specialityId,oldOrNew,this)
+            mPresenter.createConsultationRequest(specialityId,consultationId,doctorId,this)
             mPresenter.showConfirmDialogAndSendAnswersToNetwork(mAdapter.getCaseSummary())
         }
 
@@ -72,7 +75,8 @@ class SpecialityQuestionsFragment : Fragment(),SpecialityQuestionView{
         super.onCreate(savedInstanceState)
         arguments?.let {
             specialityId = it.getInt(SPECIALITY_ID,0)
-            oldOrNew = it.getBoolean(BUNDLE_OLD_OR_NEW,false)
+            consultationId = it.getString(CONSULTATION_ID,"")
+            doctorId = it.getString(DOCTOR_ID,"")
         }
     }
 

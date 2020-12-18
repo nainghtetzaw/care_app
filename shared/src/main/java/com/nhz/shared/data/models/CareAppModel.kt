@@ -1,5 +1,6 @@
 package com.nhz.shared.data.models
 
+import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import com.nhz.shared.data.vos.*
 
@@ -59,6 +60,7 @@ interface CareAppModel {
     fun sendConsultationRequestPatient(id : String,consultationRequest : ConsultationRequestVO)
     fun sendRequestedPatientCaseSummary(id : String, case : CaseSummaryVO)
     fun addConsultationMedicalHistory(messageId : String,history : MedicalHistoryVO)
+    fun uploadImage(bitmap : Bitmap,onSuccess : (image : String) -> Unit,onFailure: (message: String) -> Unit)
 
     fun deleteConsultationRequest(id : String)
     fun deleteMedicine(name : String,consultationId : String)

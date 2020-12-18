@@ -14,6 +14,7 @@ import com.nhz.doctorapp.R
 import com.nhz.doctorapp.mvp.presenters.impls.MedicalHistoryPresenterImpl
 import com.nhz.doctorapp.mvp.presenters.interfaces.MedicalHistoryPresenter
 import com.nhz.doctorapp.mvp.views.MedicalHistoryView
+import com.nhz.shared.data.vos.MedicalHistoryVO
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -88,5 +89,9 @@ class MedicalHistoryActivity : AppCompatActivity(),MedicalHistoryView {
         val date = Date()
         val formatter = SimpleDateFormat("dd MMM yyyy EEE")
         return formatter.format(date)
+    }
+
+    override fun showMedicalData(data: MedicalHistoryVO) {
+
     }
 }

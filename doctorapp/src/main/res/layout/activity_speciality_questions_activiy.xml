@@ -22,7 +22,7 @@
             android:layout_marginStart="15dp"
             android:layout_centerVertical="true"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="မေးခွန်းများ"

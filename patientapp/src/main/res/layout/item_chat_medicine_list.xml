@@ -58,15 +58,16 @@
         <ListView
             android:id="@+id/listMedicineName"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="100dp"
             android:divider="@color/white"
             android:dividerHeight="5dp"
+            android:scrollIndicators="end"
             tools:listitem="@layout/item_medicine_name"
             android:layout_margin="16dp"/>
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <org.mmtextview.components.MMButton
         android:id="@+id/btnOrderMedicine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

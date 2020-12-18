@@ -18,7 +18,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ဆွေးနွေးမည့်အချိန်ရွေးမည်"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:timePickerMode="spinner" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <org.mmtextview.components.MMButton
             android:id="@+id/btnChoosePostponeTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

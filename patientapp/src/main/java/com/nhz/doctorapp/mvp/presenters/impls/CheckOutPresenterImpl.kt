@@ -6,9 +6,9 @@ import com.nhz.shared.mvp.presenters.AbstractBasePresenter
 
 class CheckOutPresenterImpl : AbstractBasePresenter<CheckOutView>(),CheckOutPresenter {
     override fun onUiReady() {
-        mModel.getCheckOutPrescriptionFromNetwork("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{prescriptions ->
+        mModel.getCheckOutPrescriptionFromNetwork(mAuthModel.getUserToken(),{prescriptions ->
             mView?.showPrescriptionData(prescriptions)
-            mModel.getCheckOutFromNetwork("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{
+            mModel.getCheckOutFromNetwork(mAuthModel.getUserToken(),{
                 mView?.showAddressAndPrice(it.address,(it.total_price + 3000).toString(),it.total_price.toString())
             },{})
         },{})

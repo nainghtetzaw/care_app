@@ -4,18 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nhz.doctorapp.R
-import com.nhz.doctorapp.delegates.ConsultationRequestDelegate
+import com.nhz.doctorapp.delegates.HomeDelegate
 import com.nhz.doctorapp.views.viewholders.BaseViewHolder
 import com.nhz.doctorapp.views.viewholders.NewConsultationRequestViewHolder
 import com.nhz.doctorapp.views.viewholders.OldConsultationRequestViewHolder
 import com.nhz.shared.data.vos.ConsultationRequestVO
-import com.nhz.shared.data.vos.ConsultationsVO
 
-class ConsultationRequestAdapter(delegate : ConsultationRequestDelegate) : RecyclerView.Adapter<BaseViewHolder<ConsultationRequestVO>>() {
+class ConsultationRequestAdapter(delegate : HomeDelegate) : RecyclerView.Adapter<BaseViewHolder<ConsultationRequestVO>>() {
 
     private val VIEW_TYPE_OLD = 1
     private val VIEW_TYPE_NEW = 2
-    private val mDelegate : ConsultationRequestDelegate = delegate
+    private val mDelegate : HomeDelegate = delegate
+    private var mDoctorId : String = ""
     private var mData : MutableList<ConsultationRequestVO> = mutableListOf()
 
 //    override fun onCreateViewHolder(
@@ -47,7 +47,7 @@ class ConsultationRequestAdapter(delegate : ConsultationRequestDelegate) : Recyc
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (mData[position].old_or_new) {
+        return if (mData[position].doctorId == mDoctorId) {
             VIEW_TYPE_OLD
         }else VIEW_TYPE_NEW
     }
@@ -68,5 +68,9 @@ class ConsultationRequestAdapter(delegate : ConsultationRequestDelegate) : Recyc
     fun addNewData(data : MutableList<ConsultationRequestVO>){
         mData = data
         notifyDataSetChanged()
+    }
+
+    fun setDoctorId(id : String){
+        mDoctorId = id
     }
 }

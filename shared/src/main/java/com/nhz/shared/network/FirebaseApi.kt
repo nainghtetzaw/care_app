@@ -1,5 +1,6 @@
 package com.nhz.shared.network
 
+import android.graphics.Bitmap
 import com.nhz.shared.data.vos.*
 
 interface FirebaseApi {
@@ -40,6 +41,7 @@ interface FirebaseApi {
     fun checkOutPrescription(userId: String, prescription : PrescriptionVO)
     fun sendConsultationRequest(id : String, consultationRequest : ConsultationRequestVO)
     fun sendRequestedPatientCaseSummary(id: String, case : CaseSummaryVO)
+    fun uploadImage(bitmap : Bitmap,onSuccess : (image : String) -> Unit,onFailure: (message: String) -> Unit)
 
     fun deleteConsultationRequest(id : String)
     fun deleteMedicine(name : String,consultationId : String)

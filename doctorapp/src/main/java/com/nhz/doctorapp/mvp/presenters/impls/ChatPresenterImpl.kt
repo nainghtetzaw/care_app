@@ -73,7 +73,7 @@ class ChatPresenterImpl : AbstractBasePresenter<ChatView>(),ChatPresenter {
     }
 
     private fun getConsultationPrescription(consultationId: String){
-        mModel.getDoctorByDoctorIdAndSaveToDatabase("1234512345",{ doctorVO ->
+        mModel.getDoctorByDoctorIdAndSaveToDatabase(mAuthModel.getUserToken(),{ doctorVO ->
             doctor = doctorVO
             mModel.getConsultationPrescriptionAndSaveToDatabase(consultationId,{ prescriptions ->
                 if (prescriptions.count() != 0){

@@ -1,5 +1,6 @@
 package com.nhz.shared.network
 
+import android.graphics.Bitmap
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -7,6 +8,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.nhz.shared.*
 import com.nhz.shared.data.vos.*
+import java.io.ByteArrayOutputStream
+import java.util.*
 
 object FirebaseApiImpl : FirebaseApi {
 
@@ -325,18 +328,18 @@ object FirebaseApiImpl : FirebaseApi {
         db.collection(consultations).whereEqualTo("patientId",patientId)
             .addSnapshotListener { value, error ->
                 error?.let {
-                    onFailure(it.message ?: "Please check your internet connection.")
+                    onFailure(it.message ?: "Please check your internet connection!")
                 } ?: kotlin.run {
-                    val consultationsList : MutableList<ConsultationsVO> = mutableListOf()
+                    val list : MutableList<ConsultationsVO> = mutableListOf()
                     val request = value?.documents ?: arrayListOf()
 
-                    for(document in request){
+                    for (document in request){
                         val data = document.data
                         val dataStr = Gson().toJson(data)
                         val dataType = object : TypeToken<ConsultationsVO>(){}.type
-                        consultationsList.add(Gson().fromJson(dataStr,dataType))
+                        list.add(Gson().fromJson(dataStr,dataType))
                     }
-                    onSuccess(consultationsList)
+                    onSuccess(list)
                 }
             }
     }
@@ -349,7 +352,7 @@ object FirebaseApiImpl : FirebaseApi {
         db.collection(consultations).document(messageId).collection(prescriptions)
             .addSnapshotListener { value, error ->
                 error?.let {
-                    onFailure(error.message ?: "Please check your internet connection.")
+                    onFailure(it.message ?: "Please check your internet connection.")
                 } ?: kotlin.run {
                     val prescriptionList : MutableList<PrescriptionVO> = mutableListOf()
                     val request = value?.documents ?: arrayListOf()
@@ -399,9 +402,13 @@ object FirebaseApiImpl : FirebaseApi {
                         onFailure(it.message ?: "Please check your internet connection!")
                     } ?: kotlin.run {
                         val request = value?.data
-                        val dataStr = Gson().toJson(request)
-                        val dataType = object : TypeToken<MedicalHistoryVO>(){}.type
-                        onSuccess(Gson().fromJson(dataStr,dataType))
+                        if(request != null){
+                            val dataStr = Gson().toJson(request)
+                            val dataType = object : TypeToken<MedicalHistoryVO>(){}.type
+                            onSuccess(Gson().fromJson(dataStr,dataType))
+                        }else{
+                            onSuccess(MedicalHistoryVO())
+                        }
                     }
                 }
     }
@@ -547,6 +554,30 @@ object FirebaseApiImpl : FirebaseApi {
 
     override fun sendRequestedPatientCaseSummary(id: String, case: CaseSummaryVO) {
         db.collection(consultation_requests).document(id).collection(case_summary).document(case.id.toString()).set(case)
+    }
+
+    override fun uploadImage(
+        bitmap: Bitmap,
+        onSuccess: (image: String) -> Unit,
+        onFailure: (message: String) -> Unit
+    ) {
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos)
+        val data = baos.toByteArray()
+        val imageRef = storageReferance.child("images/${UUID.randomUUID()}")
+        val uploadTask = imageRef.putBytes(data)
+
+        uploadTask.addOnFailureListener{
+
+        }.addOnCompleteListener{
+
+        }
+        val urlTask =uploadTask.continueWithTask{
+            return@continueWithTask imageRef.downloadUrl
+        }.addOnCompleteListener {task ->
+            val imageUrl = task.result
+            imageUrl?.let { onSuccess(it.toString()) }
+        }
     }
 
     override fun deleteConsultationRequest(id: String) {

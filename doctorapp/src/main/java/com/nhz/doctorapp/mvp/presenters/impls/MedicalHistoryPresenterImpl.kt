@@ -9,4 +9,10 @@ class MedicalHistoryPresenterImpl : AbstractBasePresenter<MedicalHistoryView>(),
     override fun addMedicalHistory(consultationId : String,date : String,note : String) {
         mModel.addConsultationMedicalHistory(consultationId, MedicalHistoryVO(date_of_consultation = date,note = note))
     }
+
+    override fun onUiReady(consultationId: String) {
+        mModel.getConsultationMedicalHistoryFromNetwork(consultationId,{
+            mView?.showMedicalData(it)
+        },{})
+    }
 }

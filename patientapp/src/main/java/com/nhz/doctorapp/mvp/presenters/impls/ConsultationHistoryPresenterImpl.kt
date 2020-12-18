@@ -20,11 +20,13 @@ class ConsultationHistoryPresenterImpl : AbstractBasePresenter<ConsultationHisto
     }
 
     private fun getConsultationHistory(context : Context){
-        mModel.getFinishedConsultationsByPatientIdAndSaveToDatabase("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{
-            val consultation = it.filter { cons ->  cons.finished }
-            mView?.showConsultationHistoryData(it)
-        },{
-            Toast.makeText(context,it,Toast.LENGTH_LONG).show()
-        })
+        mModel.getUnfinishedConsultationFromNetworkByPatientId(mAuthModel.getUserToken(),false,{
+            val finished = it.filter { it.finished }
+            mView?.showConsultationHistoryData(finished)
+        },{})
+//        mModel.getFinishedConsultationsByPatientIdAndSaveToDatabase("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{
+//            val consultation = it.filter { it.finished }
+//            mView?.showConsultationHistoryData(consultation)
+//        },{})
     }
 }

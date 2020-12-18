@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_general_questions_form"/>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <org.mmtextview.components.MMButton
             android:id="@+id/btnNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <org.mmtextview.components.MMTextView
         android:id="@+id/tvConfirmSpecialityQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,7 +12,7 @@
         android:textColor="@color/green"
         android:textSize="16dp"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <org.mmtextview.components.MMTextView
         android:id="@+id/tvConfirmSpecialityAnswer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

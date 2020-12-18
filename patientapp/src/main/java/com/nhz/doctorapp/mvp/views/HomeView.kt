@@ -12,6 +12,7 @@ interface HomeView : BaseView {
     fun showConsultationAcceptedDoctor(doctor : DoctorVO)
     fun networkError(error : String)
     fun onClickStartConsultation(consultationId : String,doctorName : String,doctorImage : String)
+    fun navigateToCaseSummaryFormActivity(doctorId : String,specialityId : Int)
 
     fun hideAcceptedRequestViewPod()
     fun hideRecentDoctorList()

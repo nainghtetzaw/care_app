@@ -11,6 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/empty"/>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardIvDoctorProfile"
             android:layout_width="wrap_content"
@@ -28,7 +34,7 @@
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:id="@+id/tvDoctorName"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -45,10 +51,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/cardIvDoctorProfile"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            tools:listitem="@layout/item_new_consultation_request"/>
+            android:layout_marginEnd="20dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:id="@+id/tvConsultationHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,8 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_below="@id/tvConsultationHistory"
-            tools:listitem="@layout/item_old_consultation_request"/>
+            android:layout_below="@id/tvConsultationHistory" />
 
     </RelativeLayout>
 

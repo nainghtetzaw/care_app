@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:id="@+id/tvConsultationRequest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
             android:textColor="@color/black"
             android:layout_margin="10dp"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="လူနာအသစ်"
@@ -58,7 +58,7 @@
 
         </androidx.cardview.widget.CardView>
         
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:id="@+id/tvRequestedPatientName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             android:layout_toEndOf="@id/cardIvRequestedPatient"
             android:layout_marginStart="16dp"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <org.mmtextview.components.MMTextView
             android:id="@+id/tvRequestedPatientBd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
             android:layout_marginBottom="20dp"
             android:weightSum="2">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <org.mmtextview.components.MMButton
                 android:id="@+id/btnSkipRequest"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -100,7 +100,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="10dp"/>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <org.mmtextview.components.MMButton
                 android:id="@+id/btnAcceptRequest"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"

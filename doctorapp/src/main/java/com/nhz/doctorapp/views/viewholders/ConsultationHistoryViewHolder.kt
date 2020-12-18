@@ -5,13 +5,35 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.nhz.doctorapp.R
+import com.nhz.doctorapp.delegates.HomeDelegate
 import com.nhz.shared.data.vos.ConsultationsVO
 
-class ConsultationHistoryViewHolder(itemview : View) : BaseViewHolder<ConsultationsVO>(itemview) {
+class ConsultationHistoryViewHolder(itemview : View,val mDelegate : HomeDelegate) : BaseViewHolder<ConsultationsVO>(itemview) {
 
     private val ivBookedPatientProfile : ImageView = itemview.findViewById(R.id.ivBookedPatientProfile)
     private val tvBookedPatientName : TextView = itemview.findViewById(R.id.tvBookedPatientName)
     private val tvBookedPatientBd : TextView = itemview.findViewById(R.id.tvBookedPatientBd)
+    private val tvBookedMedication : TextView = itemview.findViewById(R.id.tvBookedMedication)
+    private val tvBookedPrescription : TextView = itemview.findViewById(R.id.tvBookedPrescription)
+    private val tvBookedNote : TextView = itemview.findViewById(R.id.tvBookedNote)
+
+    init {
+        tvBookedMedication.setOnClickListener {
+            mData?.let {
+                mDelegate.onTapMedication(it.id,it.patientId)
+            }
+        }
+        tvBookedPrescription.setOnClickListener {
+            mData?.let {
+                mDelegate.onTapPrescription(it.id)
+            }
+        }
+        tvBookedNote.setOnClickListener {
+            mData?.let {
+                mDelegate.onTapNote(it.id,it.patient_info?.username!!,it.patient_info?.date_of_birth!!)
+            }
+        }
+    }
 
     override fun bindData(data: ConsultationsVO) {
         mData = data

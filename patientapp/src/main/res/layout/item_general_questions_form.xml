@@ -7,7 +7,7 @@
     android:layout_marginTop="10dp"
     android:background="@color/grey_white">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <org.mmtextview.components.MMTextView
         android:id="@+id/tvQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

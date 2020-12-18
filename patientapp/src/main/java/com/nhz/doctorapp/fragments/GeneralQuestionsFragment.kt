@@ -36,16 +36,19 @@ class GeneralQuestionsFragment : Fragment(),GeneralQuestionsView {
     private lateinit var mQuestionsAdapter : GeneralQuestionsAdapter
     private lateinit var mPresenter : GeneralQuestionsPresenter
     private var specialityId : Int = 0
-    private var oldOrNew : Boolean = false
+    private var consultationId : String = ""
+    private var doctorId : String = ""
 
     companion object{
 
         const val SPECIALITY_ID = "SPECIALITY_ID"
-        const val BUNDLE_OLD_OR_NEW = "BUNDLE_OLD_OR_NEW"
-        fun newInstance(specialityId : Int,oldOrNew : Boolean) : GeneralQuestionsFragment {
+        const val CONSULTATION_ID  = "CONSULTATION_ID"
+        const val DOCTOR_ID = "DOCTOR_ID"
+        fun newInstance(specialityId : Int,consultationId : String,doctorId : String) : GeneralQuestionsFragment {
             val bundle = Bundle()
             bundle.putInt(SPECIALITY_ID,specialityId)
-            bundle.putBoolean(BUNDLE_OLD_OR_NEW,oldOrNew)
+            bundle.putString(CONSULTATION_ID,consultationId)
+            bundle.putString(DOCTOR_ID,doctorId)
             return GeneralQuestionsFragment().apply {
                 arguments = bundle
             }
@@ -66,6 +69,8 @@ class GeneralQuestionsFragment : Fragment(),GeneralQuestionsView {
 
             cardQuestionsAndAnswers = it.findViewById(R.id.cardQuestionsAndAnswers)
             rViewQuestionAndAnswer = it.findViewById(R.id.rViewQuestionsAndAnswers)
+            it.findViewById<View>(R.id.vCaseSpeciality)?.background = ContextCompat.getDrawable(it,R.color.blue)
+            it.findViewById<ImageView>(R.id.ivCaseSpeciality)?.background = ContextCompat.getDrawable(it,R.color.blue)
             rViewQuestionsList = it.findViewById(R.id.rViewQuestionsList)
             btnNext = it.findViewById(R.id.btnNext)
 
@@ -75,10 +80,7 @@ class GeneralQuestionsFragment : Fragment(),GeneralQuestionsView {
 
             btnNext.setOnClickListener {view ->
 
-                activity?.findViewById<View>(R.id.vCaseSpeciality)?.background = ContextCompat.getDrawable(it,R.color.blue)
-                activity?.findViewById<ImageView>(R.id.ivCaseSpeciality)?.background = ContextCompat.getDrawable(it,R.color.blue)
-
-                fragmentManager?.beginTransaction()?.replace(R.id.fragmentContainer,SpecialityQuestionsFragment.newInstance(specialityId,oldOrNew))
+                fragmentManager?.beginTransaction()?.replace(R.id.fragmentContainer,SpecialityQuestionsFragment.newInstance(specialityId,consultationId,doctorId))
                         ?.commit()
 
                 mPresenter.sendGeneralAnswers(mQuestionsAdapter.getGeneralData())
@@ -91,7 +93,8 @@ class GeneralQuestionsFragment : Fragment(),GeneralQuestionsView {
 
         arguments?.let {
             specialityId = it.getInt(SPECIALITY_ID,0)
-            oldOrNew = it.getBoolean(BUNDLE_OLD_OR_NEW,false)
+            consultationId = it.getString(CONSULTATION_ID,"")
+            doctorId = it.getString(DOCTOR_ID,"")
         }
     }
 

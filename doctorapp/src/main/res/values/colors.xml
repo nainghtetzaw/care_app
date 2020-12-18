@@ -14,4 +14,5 @@
     <color name="orange">#FF9657</color>
     <color name="red">#FF6767</color>
     <color name="light_blue">#E6F1FF</color>
+    <color name="loginColor">#E1E1FF</color>
 </resources>

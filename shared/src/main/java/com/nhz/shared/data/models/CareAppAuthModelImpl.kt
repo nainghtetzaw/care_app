@@ -20,11 +20,23 @@ object CareAppAuthModelImpl : BaseModel(),CareAppAuthModel {
         mFirebaseAuthApi.signUp(username, password, email, onSuccess, onFailure)
     }
 
+    override fun logout() {
+        mFirebaseAuthApi.logout()
+    }
+
     override fun getUserToken() : String {
         return mFirebaseAuthApi.getUserToken()
     }
 
-    override fun getFbToken() {
-        mFirebaseAuthApi.getUserToken()
+    override fun getEmail(): String {
+        return mFirebaseAuthApi.getUserEmail()
+    }
+
+    override fun getFbToken() : String{
+        return mFirebaseAuthApi.getUserToken()
+    }
+
+    override fun getUsername(): String {
+        return mFirebaseAuthApi.getUsername()
     }
 }

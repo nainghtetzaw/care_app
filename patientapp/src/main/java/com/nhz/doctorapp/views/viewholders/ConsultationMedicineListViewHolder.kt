@@ -16,7 +16,7 @@ class ConsultationMedicineListViewHolder(itemview : View) : BaseViewHolder<Presc
     override fun bindData(data: PrescriptionVO) {
         mData = data
         tvConsultationMedicineName.text = data.medicine
-        tvQuantity.text = data.quantity.toString()
+        tvQuantity.text = "${data.quantity} Tablet"
         tvDay.text = data.day
 
         if (data.morning && data.evening && data.night){

@@ -14,7 +14,7 @@ class MainPresenterImpl : AbstractBasePresenter<MainView>(),MainPresenter {
 
     private fun getPatientInfo(){
         //userId
-        mModel.getPatientByPatientIdAndSaveToDatabase("72JXNg3bVUZ0FRyanMNiNm2WLPn1",{},{})
+        mModel.getPatientByPatientIdAndSaveToDatabase(mAuthModel.getUserToken(),{},{})
     }
 
     private fun getSpecialities(){
