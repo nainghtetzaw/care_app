@@ -55,6 +55,9 @@ class PrescriptionHistoryDialogFragment : DialogFragment(),PrescriptionHistoryVi
         setUpPresenter()
         setUpRecyclerView()
         mPresenter.onUiReady(consultationId)
+        btnClose.setOnClickListener {
+            dismiss()
+        }
     }
 
     override fun onCreateView(

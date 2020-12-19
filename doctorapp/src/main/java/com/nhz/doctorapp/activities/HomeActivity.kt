@@ -28,6 +28,9 @@ import com.nhz.shared.data.vos.PatientVO
 
 class HomeActivity : AppCompatActivity(),HomeView {
 
+    private var isRequestVisible : Boolean = false
+    private var isHistoryVisible : Boolean = false
+
     private lateinit var rViewConsultationRequestList : RecyclerView
     private lateinit var rViewConsultationHistoryList : RecyclerView
     private lateinit var tvConsultationHistory : TextView
@@ -62,6 +65,8 @@ class HomeActivity : AppCompatActivity(),HomeView {
         ivMainDoctorProfile = findViewById(R.id.ivMainDoctorProfile)
         ivEmpty = findViewById(R.id.ivEmpty)
 
+        tvConsultationHistory.visibility = View.GONE
+
         setUpPresenter()
         setUpRecyclerView()
         mPresenter.onUiReady(this,this)
@@ -69,8 +74,8 @@ class HomeActivity : AppCompatActivity(),HomeView {
         ivMainDoctorProfile.setOnClickListener {
             startActivity(ProfileActivity.newIntent(this))
         }
-
     }
+
 
     override fun showConsultationRequestData(data: List<ConsultationRequestVO>,doctorId : String) {
         mConsultationRequestAdapter.setDoctorId(doctorId)
@@ -120,22 +125,34 @@ class HomeActivity : AppCompatActivity(),HomeView {
         mSelectTimeFragment.show(supportFragmentManager,SetConsultationTimeFragmentDialog.TAG_SELECT_TIME)
     }
 
+    override fun navigateToChatActivity(patientName: String, patientId: String, patientBd: String, patientImage: String, consultationId: String) {
+        startActivity(ChatActivity.newIntent(patientName,patientId,patientBd,patientImage,consultationId,this))
+    }
+
     override fun showConsultationRequestList() {
         rViewConsultationRequestList.visibility = View.VISIBLE
+        isRequestVisible = true
+        showOrHideEmptyView()
     }
 
     override fun hideConsultationRequestList() {
         rViewConsultationRequestList.visibility = View.GONE
+        isRequestVisible = false
+        showOrHideEmptyView()
     }
 
     override fun showConsultationHistoryList() {
         tvConsultationHistory.visibility = View.VISIBLE
         rViewConsultationHistoryList.visibility = View.VISIBLE
+        isHistoryVisible = true
+        showOrHideEmptyView()
     }
 
     override fun hideConsultationHistoryList() {
         tvConsultationHistory.visibility = View.GONE
         rViewConsultationHistoryList.visibility = View.GONE
+        isHistoryVisible = false
+        showOrHideEmptyView()
     }
 
     override fun showEmpty() {
@@ -149,6 +166,14 @@ class HomeActivity : AppCompatActivity(),HomeView {
     private fun setUpPresenter(){
         mPresenter = ViewModelProviders.of(this).get(HomePresenterImpl::class.java)
         mPresenter.initPresenter(this)
+    }
+
+    private fun showOrHideEmptyView(){
+        if (!isHistoryVisible && !isRequestVisible){
+            ivEmpty.visibility = View.VISIBLE
+        }else {
+            ivEmpty.visibility = View.GONE
+        }
     }
 
     private fun setUpRecyclerView(){

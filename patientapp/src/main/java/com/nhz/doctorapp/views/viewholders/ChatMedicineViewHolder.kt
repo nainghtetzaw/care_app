@@ -25,9 +25,9 @@ class ChatMedicineViewHolder(itemview : View,val mDelegate : ChatMedicineDelegat
     override fun bindData(data: LiveChatVO) {
         mData = data
 
-        if (data.receiver_image != ""){
+        if (data.sender_image != ""){
             Glide.with(itemView.context)
-                    .load(data.receiver_image)
+                    .load(data.sender_image)
                     .into(ivDoctorImage)
         }
         val adapter = ArrayAdapter(itemView.context,R.layout.item_medicine_name,data.medicineList!!)

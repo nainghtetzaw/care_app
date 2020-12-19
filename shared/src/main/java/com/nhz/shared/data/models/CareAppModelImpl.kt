@@ -256,6 +256,10 @@ object CareAppModelImpl : BaseModel(),CareAppModel {
         mFirebaseApi.getConsultationMedicalHistory(messageId, onSuccess, onFailure)
     }
 
+    override fun getConsultationByIdFromNetwork(id: String, onSuccess: (consultation: ConsultationsVO) -> Unit, onFailure: (message: String) -> Unit) {
+        mFirebaseApi.getConsultationById(id, onSuccess, onFailure)
+    }
+
     override fun sendMessage(messageId: String, message: LiveChatVO) {
         mFirebaseApi.sendMessage(messageId,message)
     }

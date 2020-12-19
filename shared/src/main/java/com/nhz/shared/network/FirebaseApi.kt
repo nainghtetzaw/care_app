@@ -15,6 +15,7 @@ interface FirebaseApi {
     fun getPatientGeneralAnswers(userId : String, onSuccess : (answers : List<CaseSummaryVO>) -> Unit,onFailure: (message: String) -> Unit)
     fun getConsultationRequests(specialityId : Int, onSuccess : (requests : List<ConsultationRequestVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getRequestedPatientsCaseSummary(id : String, onSuccess : (case : List<CaseSummaryVO>) -> Unit, onFailure: (message: String) -> Unit)
+    fun getConsultationById(id : String,onSuccess: (consultation: ConsultationsVO) -> Unit,onFailure: (message: String) -> Unit)
     fun getUnfinishedConsultationByDoctroId(userId: String, finished : Boolean, onSuccess : (consultation : List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getUnfinishedConsultationByPatientId(userId: String, finished : Boolean, onSuccess : (consultation : List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getFinishedConsultationsByDoctorId(doctorId : String,onSuccess : (consultation : List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit)

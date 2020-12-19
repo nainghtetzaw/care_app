@@ -91,7 +91,7 @@ class ChatActivity : AppCompatActivity(),ChatView {
 
         mPresenter.onUiReady(consultationId!!,this,this)
 
-        nestedScrollView.post { Runnable { nestedScrollView.fullScroll(View.FOCUS_DOWN) } }
+        nestedScrollView.post { Runnable { nestedScrollView.fullScroll(View.FOCUS_UP) } }
 
         ivSendMessage.setOnClickListener {
             if(etInputText.text.isNotBlank() || etInputText.text.isNotEmpty()){

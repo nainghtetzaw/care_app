@@ -15,9 +15,9 @@ class ReceiverMessageViewHolder(itemview : View) : BaseViewHolder<LiveChatVO>(it
 
     override fun bindData(data: LiveChatVO) {
         mData = data
-        if (data.receiver_image != ""){
+        if (data.sender_image != ""){
             Glide.with(itemView.context)
-                    .load(data.receiver_image)
+                    .load(data.sender_image)
                     .into(ivOtherMessageProfile)
         }
         tvOtherMessage.text = data.message

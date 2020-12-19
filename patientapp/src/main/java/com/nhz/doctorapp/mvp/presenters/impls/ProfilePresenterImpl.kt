@@ -7,7 +7,7 @@ import com.nhz.shared.mvp.presenters.AbstractBasePresenter
 class ProfilePresenterImpl : AbstractBasePresenter<ProfileView>(),ProfilePresenter {
     override fun onUiReady() {
         mModel.getPatientByPatientIdAndSaveToDatabase(mAuthModel.getUserToken(),{
-            if(it.date_of_birth != "" || it.phoneNumber.equals(0) || it.image != ""){
+            if(it.date_of_birth != ""){
                 mView?.showProfileInfo(it)
             }else{
                 mView?.showEmptyViewPod()

@@ -16,6 +16,8 @@ interface HomeView : BaseView {
     fun showCaseSummaryHistoryDialogFragment(consultationId: String,patientId : String)
     fun showPrescriptionHistoryDialogFragment(consultationId: String)
     fun showSetConsultationTimeFragmentDialog()
+    fun navigateToChatActivity(patientName: String,patientId: String,patientBd: String,patientImage : String,consultationId: String)
+//    fun showOrHideEmptyView()
 
     fun showConsultationRequestList()
     fun hideConsultationRequestList()

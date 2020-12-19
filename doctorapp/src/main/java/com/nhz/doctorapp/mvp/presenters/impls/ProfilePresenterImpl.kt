@@ -13,5 +13,6 @@ class ProfilePresenterImpl : AbstractBasePresenter<ProfileView>(),ProfilePresent
 
     override fun logout() {
         mAuthModel.logout()
+        mView?.navigateToLoginActivity()
     }
 }

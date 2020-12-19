@@ -1,6 +1,7 @@
 package com.nhz.doctorapp.views.viewholders
 
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -16,6 +17,7 @@ class ConsultationHistoryViewHolder(itemview : View,val mDelegate : HomeDelegate
     private val tvBookedMedication : TextView = itemview.findViewById(R.id.tvBookedMedication)
     private val tvBookedPrescription : TextView = itemview.findViewById(R.id.tvBookedPrescription)
     private val tvBookedNote : TextView = itemview.findViewById(R.id.tvBookedNote)
+    private val btnMessageBookedPatient : Button = itemview.findViewById(R.id.btnMessageBookedPatient)
 
     init {
         tvBookedMedication.setOnClickListener {
@@ -31,6 +33,11 @@ class ConsultationHistoryViewHolder(itemview : View,val mDelegate : HomeDelegate
         tvBookedNote.setOnClickListener {
             mData?.let {
                 mDelegate.onTapNote(it.id,it.patient_info?.username!!,it.patient_info?.date_of_birth!!)
+            }
+        }
+        btnMessageBookedPatient.setOnClickListener {
+            mData?.let {
+                mDelegate.onTapMessage(it.patient_info?.username!!,it.patientId,it.patient_info?.date_of_birth!!,it.patient_info?.image!!,it.id)
             }
         }
     }

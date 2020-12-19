@@ -62,7 +62,8 @@
                         android:id="@+id/ivPatientInfoProfile"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/patient_profile" />
+                        android:src="@drawable/patient_profile"
+                        android:scaleType="centerCrop"/>
 
                 </androidx.cardview.widget.CardView>
 

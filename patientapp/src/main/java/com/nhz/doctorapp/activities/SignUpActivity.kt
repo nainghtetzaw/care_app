@@ -48,6 +48,8 @@ class SignUpActivity : AppCompatActivity(),SignUpView {
                 Toast.makeText(this,"Please enter your info!", Toast.LENGTH_SHORT).show()
             }
         }
+
+        ivSignUpBack.setOnClickListener { finish() }
     }
 
     private fun setUpPresenter(){

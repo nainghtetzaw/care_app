@@ -75,7 +75,7 @@ class ProfileFragment : Fragment(),ProfileView {
     override fun showProfileInfo(data: PatientVO) {
         tvProfileName.text = data.username
         tvProfileBd.text = data.date_of_birth
-        tvPhoneNumber.text = data.phoneNumber.toString()
+        tvPhoneNumber.text = "0${data.phoneNumber}"
         if (data.image != ""){
             activity?.applicationContext?.let {
                 Glide.with(it)

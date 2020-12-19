@@ -45,6 +45,7 @@ interface CareAppModel {
     fun getCheckOutFromNetwork(userId : String, onSuccess : (checkout : CheckOutVO) -> Unit,onFailure: (message: String) -> Unit)
     fun getCheckOutPrescriptionFromNetwork(userId: String, onSuccess : (prescription : List<PrescriptionVO>) -> Unit, onFailure: (message: String) -> Unit)
     fun getConsultationMedicalHistoryFromNetwork(messageId : String,onSuccess : (history : MedicalHistoryVO) -> Unit,onFailure: (message: String) -> Unit)
+    fun getConsultationByIdFromNetwork(id: String, onSuccess: (consultation: ConsultationsVO) -> Unit, onFailure: (message: String) -> Unit)
 
     fun sendMessage(messageId : String, message : LiveChatVO)
     fun prescribeMedicine(messageId : String,prescription : PrescriptionVO)

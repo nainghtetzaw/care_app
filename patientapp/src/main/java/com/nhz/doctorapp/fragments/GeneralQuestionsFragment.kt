@@ -69,8 +69,7 @@ class GeneralQuestionsFragment : Fragment(),GeneralQuestionsView {
 
             cardQuestionsAndAnswers = it.findViewById(R.id.cardQuestionsAndAnswers)
             rViewQuestionAndAnswer = it.findViewById(R.id.rViewQuestionsAndAnswers)
-            it.findViewById<View>(R.id.vCaseSpeciality)?.background = ContextCompat.getDrawable(it,R.color.blue)
-            it.findViewById<ImageView>(R.id.ivCaseSpeciality)?.background = ContextCompat.getDrawable(it,R.color.blue)
+
             rViewQuestionsList = it.findViewById(R.id.rViewQuestionsList)
             btnNext = it.findViewById(R.id.btnNext)
 
@@ -82,7 +81,8 @@ class GeneralQuestionsFragment : Fragment(),GeneralQuestionsView {
 
                 fragmentManager?.beginTransaction()?.replace(R.id.fragmentContainer,SpecialityQuestionsFragment.newInstance(specialityId,consultationId,doctorId))
                         ?.commit()
-
+                it.findViewById<View>(R.id.vCaseSpeciality)?.background = ContextCompat.getDrawable(it,R.color.blue)
+                it.findViewById<ImageView>(R.id.ivCaseSpeciality)?.background = ContextCompat.getDrawable(it,R.color.blue)
                 mPresenter.sendGeneralAnswers(mQuestionsAdapter.getGeneralData())
             }
         }

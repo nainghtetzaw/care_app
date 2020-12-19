@@ -37,9 +37,9 @@ class GeneralQuestionsPresenterImpl : AbstractBasePresenter<GeneralQuestionsView
                 }, {})
             }else {
                 mView?.hideQuestionsAndAnswersList()
-                mModel.getGeneralQuestionListFromDatabase().observe(lifecycleOwner, Observer {
+                mModel.getAllGeneralQuestionsListAndSaveToDatabase({
                     mView?.showAlwaysQuestions(it)
-                })
+                },{})
             }
         },{})
 //        mModel.getPatientGeneralAnswersFromDatabaseByBoolean(true).observe(lifecycleOwner, Observer {

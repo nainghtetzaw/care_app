@@ -4,11 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,6 +39,7 @@ class ChatActivity : AppCompatActivity(),ChatView {
     private lateinit var btnMedicalHistory : Button
     private lateinit var ivChatBack : ImageView
     private lateinit var nestedScrollView : NestedScrollView
+    private lateinit var linearLayout  : LinearLayout
 
     private lateinit var mSpecialityAdapter : ChatSpecialityInfoAdapter
     private lateinit var mGeneralAdapter : ChatGeneralInfoAdapter
@@ -86,6 +85,7 @@ class ChatActivity : AppCompatActivity(),ChatView {
         btnMedicalHistory = findViewById(R.id.btnMedicalHistory)
         ivChatBack = findViewById(R.id.ivChatBack)
         nestedScrollView = findViewById(R.id.nestedScrollView)
+        linearLayout = findViewById(R.id.linearLayout)
         setUpPresenter()
         setUpRecyclerView()
 
@@ -100,7 +100,7 @@ class ChatActivity : AppCompatActivity(),ChatView {
             setPatientInfo(patientName!!,patientImage,patientBd!!)
         }
 
-        nestedScrollView.post { Runnable { nestedScrollView.fullScroll(View.FOCUS_DOWN) } }
+        nestedScrollView.post { Runnable { nestedScrollView.fullScroll(View.FOCUS_UP) } }
 
         ivSendMessage.setOnClickListener {
             if (etInputMessage.text.isNotBlank() || etInputMessage.text.isNotEmpty()){
@@ -151,6 +151,12 @@ class ChatActivity : AppCompatActivity(),ChatView {
 
     override fun openMedicalHistory(consultationId: String,patientName: String,patientBd: String) {
         startActivity(MedicalHistoryActivity.newIntent(consultationId,patientName,patientBd,this))
+    }
+
+    override fun disableMessaging() {
+        etInputMessage.inputType = InputType.TYPE_NULL
+        etInputMessage.hint = ""
+        linearLayout.visibility = View.GONE
     }
 
     private fun setUpPresenter(){

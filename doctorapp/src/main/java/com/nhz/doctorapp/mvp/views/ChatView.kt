@@ -11,4 +11,5 @@ interface ChatView : BaseView{
     fun startPrescription(specialityId : Int,consultationId : String)
     fun openQuestions(specialityId: Int,consultationId: String)
     fun openMedicalHistory(consultationId: String,patientName : String,patientBd : String)
+    fun disableMessaging()
 }

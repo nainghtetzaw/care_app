@@ -52,9 +52,7 @@ class PrescriptionMedicinesPresenterImpl : AbstractBasePresenter<PrescriptionMed
     }
 
     override fun finishConsultation() {
-        mModel.getUnfinishedConsultationFromNetworkByDoctorId(doctor.userId,false,{
-            if (it.count() != 0){
-                val consultation = it.filter { cons -> cons.accept }[0]
+        mModel.getConsultationByIdFromNetwork(conId,{consultation ->
                 mModel.addConsultation(ConsultationsVO(
                         consultation.id,
                         consultation.doctorId,
@@ -65,7 +63,6 @@ class PrescriptionMedicinesPresenterImpl : AbstractBasePresenter<PrescriptionMed
                         consultation.accept
                 ))
                 mModel.addRecentDoctors(consultation.patientId,consultation.doctor_info!!)
-            }
         },{})
     }
 

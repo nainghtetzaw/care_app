@@ -144,7 +144,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Didn't have account?"
-                android:textColor="@color/blue" />
+                android:textColor="@color/blue"
+                android:layout_marginBottom="20dp"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvSignUp"

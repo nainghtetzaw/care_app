@@ -3,6 +3,8 @@
     package="com.nhz.doctorapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".DoctorApp"
@@ -31,6 +33,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activities.PatientInfoActivity" />
         <activity android:name=".activities.HomeActivity"></activity>
+        <activity android:name=".activities.ProfileActivity"/>
     </application>
 
 </manifest>

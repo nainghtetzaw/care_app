@@ -19,7 +19,7 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(),HomePresenter {
     override fun onUiReady(context: Context, lifecycleOwner: LifecycleOwner) {
         getConsultationRequestsBySpecialityId()
         getConsultationHistory()
-        emptyOrNot()
+//        mView?.showOrHideEmptyView()
     }
 
     override fun onTapAcceptRequest(requestVO: ConsultationRequestVO) {
@@ -49,6 +49,10 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(),HomePresenter {
         mView?.showSetConsultationTimeFragmentDialog()
     }
 
+    override fun onTapMessage(patientName: String, patientId: String, patientBd: String, patientImage: String, consultationId: String) {
+        mView?.navigateToChatActivity(patientName, patientId, patientBd, patientImage, consultationId)
+    }
+
     override fun onTapMedication(consultationId : String,patientId : String) {
         mView?.showCaseSummaryHistoryDialogFragment(consultationId,patientId)
     }
@@ -66,11 +70,15 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(),HomePresenter {
             doctorInfo = doctor
             mView?.showDoctorInfo(doctor)
             mModel.getConsultationRequestedPatientAndSaveToDatabase(doctor.specialityId,{
-                val request = it.filter { request -> request.available && request.doctorId != doctor.userId}
-                requestList = request.toMutableList()
-                mView?.showConsultationRequestList()
-                mView?.hideEmpty()
-                mView?.showConsultationRequestData(request,doctor.userId)
+                val request = it.filter { request -> request.available || request.doctorId == doctor.userId}
+                if(request.count() != 0){
+                    requestList = request.toMutableList()
+                    mView?.showConsultationRequestList()
+//                mView?.hideEmpty()
+                    mView?.showConsultationRequestData(request,doctor.userId)
+                }else {
+                    mView?.hideConsultationRequestList()
+                }
             },{
                 mView?.hideConsultationRequestList()
             })
@@ -78,16 +86,15 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(),HomePresenter {
     }
 
     private fun getConsultationHistory(){
-        mModel.getFinishedConsultationsByDoctorIdAndSaveToDatabase("1234512345",{
+        mModel.getFinishedConsultationsByDoctorIdAndSaveToDatabase(mAuthModel.getUserToken(),{
             val finished = it.filter { consultation -> consultation.finished }
             historyList = finished.toMutableList()
             if (finished.count() != 0){
                 mView?.showConsultationHistoryList()
-                mView?.hideEmpty()
+//                mView?.hideEmpty()
                 mView?.showConsultationHistoryData(finished)
             }else {
                 mView?.hideConsultationHistoryList()
-                mView?.hideEmpty()
             }
         },{
             mView?.hideConsultationHistoryList()

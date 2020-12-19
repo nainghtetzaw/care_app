@@ -37,11 +37,12 @@ class SpecialityQuestionsPresenterImpl : AbstractBasePresenter<SpecialityQuestio
     }
 
     private fun makeConsultationRequest(specialityId: Int,consultationId : String,doctorId: String,lifecycleOwner: LifecycleOwner){
-        mModel.getPatientInfoFromDatabase().observe(lifecycleOwner, Observer {patient ->
+        mModel.getPatientByPatientIdAndSaveToDatabase(mAuthModel.getUserToken(),{patient ->
             mModel.sendConsultationRequestPatient(
-                mAuthModel.getUserToken(),
-                ConsultationRequestVO(consultationId,patient ,specialityId,true,doctorId = doctorId))
-        })
+                    mAuthModel.getUserToken(),
+                    ConsultationRequestVO(consultationId,patient ,specialityId,true,doctorId = doctorId))
+        },{})
+
     }
 
     private fun getSpecialityQuestions(id : Int,context: Context,lifecycleOwner: LifecycleOwner){

@@ -66,6 +66,10 @@ class OrderMedicinesActivity : AppCompatActivity(),OrderMedicineView {
             }
         }
 
+        ivOrderMedicineBack.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun setUpPresenter(){

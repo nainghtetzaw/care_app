@@ -13,4 +13,6 @@ class CheckOutPresenterImpl : AbstractBasePresenter<CheckOutView>(),CheckOutPres
             },{})
         },{})
     }
+
+
 }

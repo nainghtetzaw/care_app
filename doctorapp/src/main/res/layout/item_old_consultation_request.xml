@@ -3,9 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
-    app:cardElevation="5dp">
+    app:cardElevation="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +24,7 @@
         <org.mmtextview.components.MMTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="လူနာအသစ်"
+            android:text="လူနာအဟောင်း"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_alignParentEnd="true"
@@ -96,7 +98,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="5dp"/>
 
             <org.mmtextview.components.MMButton
                 android:id="@+id/btnSelectTime"
@@ -107,8 +109,8 @@
                 android:text="အချိန်ရွေးမည်"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"/>
 
             <org.mmtextview.components.MMButton
                 android:id="@+id/btnAcceptRequest"
@@ -119,7 +121,7 @@
                 android:text="လက်ခံမည်"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="20dp"/>
 
 

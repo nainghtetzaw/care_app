@@ -89,6 +89,11 @@ class ProfileActivity : AppCompatActivity(),ProfileView {
         }
     }
 
+    override fun navigateToLoginActivity() {
+        startActivity(LoginActivity.newIntent(this))
+        finish()
+    }
+
     private fun setUpPresenter(){
         mPresenter = ViewModelProviders.of(this).get(ProfilePresenterImpl::class.java)
         mPresenter.initPresenter(this)

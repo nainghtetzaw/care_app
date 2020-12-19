@@ -15,7 +15,7 @@ object FirebaseAuthApiImpl : FirebaseAuthApi {
         onFailure: (error: String) -> Unit
     ) {
         mFirebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
-            if(it.isComplete || it.isSuccessful){
+            if(it.isComplete && it.isSuccessful){
                 onSuccess(true)
             }else{
                 onFailure(it.exception?.message ?: "Login Fail")
@@ -31,7 +31,7 @@ object FirebaseAuthApiImpl : FirebaseAuthApi {
         onFailure: (error: String) -> Unit
     ) {
         mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
-            if(it.isSuccessful || it.isComplete){
+            if(it.isSuccessful && it.isComplete){
                 mFirebaseAuth.currentUser?.updateProfile(
                     UserProfileChangeRequest.Builder().setDisplayName(username).build()
                 )

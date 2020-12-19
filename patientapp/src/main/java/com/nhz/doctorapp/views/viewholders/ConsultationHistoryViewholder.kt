@@ -1,12 +1,16 @@
 package com.nhz.doctorapp.views.viewholders
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.nhz.doctorapp.R
 import com.nhz.doctorapp.delegates.ConsultationHistoryDelegate
+import com.nhz.doctorapp.getCurrentDate
 import com.nhz.shared.data.vos.ConsultationsVO
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ConsultationHistoryViewholder(itemview : View,val mDelegate : ConsultationHistoryDelegate) : BaseViewHolder<ConsultationsVO>(itemview) {
 
@@ -40,5 +44,13 @@ class ConsultationHistoryViewholder(itemview : View,val mDelegate : Consultation
         }
         tvDoctorName.text = data.doctor_info?.name
         tvDoctorSpeciality.text = data.doctor_info?.specialityType
+        tvConsultationDate.text = getCurrentLocalDate()
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun getCurrentLocalDate() : String{
+        val date = Date()
+        val formatter = SimpleDateFormat("dd MMM yyyy EEE")
+        return formatter.format(date)
     }
 }

@@ -39,6 +39,7 @@ class ProfileEmptyDialogFragment : DialogFragment() {
         btnFillProfile.setOnClickListener {
             startActivity(EditProfileActivity.newIntent(view.context))
         }
+        ivCancel.setOnClickListener { dismiss() }
     }
 
     override fun onResume() {

@@ -38,4 +38,13 @@ class SetConsultationTimeFragmentDialog : DialogFragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val param = dialog?.window?.attributes?.apply {
+            width = ViewGroup.LayoutParams.MATCH_PARENT
+            height = ViewGroup.LayoutParams.WRAP_CONTENT
+        }
+        dialog?.window?.attributes = param
+    }
+
 }

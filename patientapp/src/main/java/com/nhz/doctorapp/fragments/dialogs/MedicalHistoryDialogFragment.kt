@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProviders
@@ -23,6 +24,7 @@ class MedicalHistoryDialogFragment : DialogFragment(),MedicalHistoryView {
     private lateinit var tvMedicalName : TextView
     private lateinit var tvMedicalBd : TextView
     private lateinit var tvMedicalDate : TextView
+    private lateinit var btnSaveMedicalHistory : Button
 
     private lateinit var mPresenter : MedicalHistoryPresenter
 
@@ -56,8 +58,11 @@ class MedicalHistoryDialogFragment : DialogFragment(),MedicalHistoryView {
         tvMedicalDate = view.findViewById(R.id.tvMedicalDate)
         tvMedicalBd = view.findViewById(R.id.tvMedicalBd)
         tvInputMedicalHistory = view.findViewById(R.id.tvInputMedicalHistory)
+        btnSaveMedicalHistory = view.findViewById(R.id.btnSaveMedicalHistory)
         setUpPresenter()
         mPresenter.onUiReady(mPatientName,mPatientBd,mConsultationId)
+
+        btnSaveMedicalHistory.setOnClickListener { dismiss() }
     }
 
     override fun onResume() {

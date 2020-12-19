@@ -1,5 +1,7 @@
 package com.nhz.doctorapp.activities
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -20,6 +22,12 @@ class LoginActivity : AppCompatActivity(),LoginView {
     private lateinit var tvSignUp : TextView
 
     private lateinit var mPresenter : LoginPresenter
+
+    companion object{
+        fun newIntent(context: Context) : Intent{
+            return Intent(context,LoginActivity::class.java)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

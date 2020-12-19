@@ -48,7 +48,7 @@ class EditProfileActivity : AppCompatActivity(),EditProfileView {
 
     companion object{
 
-        const val REQUEST_CODE = 1111
+        const val IMAGE_REQUEST_CODE = 2222
 
         fun newIntent(context: Context) : Intent{
             return Intent(context,EditProfileActivity::class.java)
@@ -103,19 +103,19 @@ class EditProfileActivity : AppCompatActivity(),EditProfileView {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == REQUEST_CODE || resultCode == REQUEST_CODE){
+        if(requestCode == IMAGE_REQUEST_CODE || resultCode == IMAGE_REQUEST_CODE){
             val imageUrl = data?.data
             imageUrl?.let {
                 if(Build.VERSION.SDK_INT == 29){
                     Observable.just(it)
-                        .map { it.toBitmap(this) }
-                        .map { it.scaleToRatio(0.35) }
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe{
-                            imageBitmap = it
-                            ivEditProfile.setImageBitmap(it)
-                        }
+                            .map { it.toBitmap(this) }
+                            .map { it.scaleToRatio(0.35) }
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe{
+                                imageBitmap = it
+                                ivEditProfile.setImageBitmap(it)
+                            }
                 }
             }
         }
@@ -139,9 +139,9 @@ class EditProfileActivity : AppCompatActivity(),EditProfileView {
 
     private fun openGallery(){
         val intent = Intent()
-        intent.action = Intent.ACTION_GET_CONTENT
+        intent.action =Intent.ACTION_GET_CONTENT
         intent.type = "image/*"
-        startActivityForResult(intent, REQUEST_CODE)
+        startActivityForResult(intent, IMAGE_REQUEST_CODE)
     }
 
     private fun saveInfo(){
@@ -154,7 +154,7 @@ class EditProfileActivity : AppCompatActivity(),EditProfileView {
                 specialityType = spinnerSpeciality.selectedItem.toString(),
                 experience = etInputExperience.text.toString().toInt(),
                 degree =  etInputDegrees.text.toString(),
-                description = etInputExperience.text.toString(),
+                description = etInputDescription.text.toString(),
                 gender = isMale
             ),imageBitmap)
         startActivity(HomeActivity.newIntent(this))

@@ -16,6 +16,7 @@ class CaseSummaryFormActivity : AppCompatActivity() {
 
     private lateinit var vCaseSpeciality : View
     private lateinit var ivCaseSpeciality : ImageView
+    private lateinit var btnCaseSummaryBack : ImageView
 
     companion object{
 
@@ -37,6 +38,7 @@ class CaseSummaryFormActivity : AppCompatActivity() {
 
         vCaseSpeciality = findViewById(R.id.vCaseSpeciality)
         ivCaseSpeciality = findViewById(R.id.ivCaseSpeciality)
+        btnCaseSummaryBack = findViewById(R.id.btnCaseSummaryBack)
 
         val specialityId = intent.getIntExtra(SPECIALITY_ID,0)
         val consultationId = intent.getStringExtra(CONSULTATION_ID)
@@ -44,5 +46,8 @@ class CaseSummaryFormActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentContainer,GeneralQuestionsFragment.newInstance(specialityId,consultationId!!,doctorId!!)).commit()
 
+        btnCaseSummaryBack.setOnClickListener {
+            finish()
+        }
     }
 }

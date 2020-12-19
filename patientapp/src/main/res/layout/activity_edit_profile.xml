@@ -52,7 +52,6 @@
                     android:id="@+id/ivEditProfile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
                     android:src="@drawable/doctor_profile" />
 
                 <org.mmtextview.components.MMTextView

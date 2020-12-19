@@ -67,6 +67,7 @@ class  HomePresenterImpl : HomePresenter,AbstractBasePresenter<HomeView>() {
                 conId = accepted[0].id
                 doctorName = accepted[0].doctor_info?.name!!
                 doctorImage = accepted[0].doctor_info?.profileImage!!
+
                 accepted.forEach { consultationsVO ->
                     mView?.showAcceptedRequestViewPod()
                     consultationsVO.doctor_info?.let { doctor ->

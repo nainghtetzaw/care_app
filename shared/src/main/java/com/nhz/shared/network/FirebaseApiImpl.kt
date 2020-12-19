@@ -258,6 +258,20 @@ object FirebaseApiImpl : FirebaseApi {
                 }
     }
 
+    override fun getConsultationById(id: String, onSuccess: (consultation: ConsultationsVO) -> Unit, onFailure: (message: String) -> Unit) {
+        db.collection(consultations).document(id)
+                .addSnapshotListener { value, error ->
+                    error?.let {
+                        onFailure(it.message ?: "There is no unfinish consultation.")
+                    } ?: kotlin.run {
+                        val request = value?.data
+                        val dataStr = Gson().toJson(request)
+                        val dataType = object : TypeToken<ConsultationsVO>(){}.type
+                        onSuccess(Gson().fromJson(dataStr,dataType))
+                    }
+                }
+    }
+
     override fun getUnfinishedConsultationByDoctroId(userId: String, finished: Boolean, onSuccess: (consultation: List<ConsultationsVO>) -> Unit, onFailure: (message: String) -> Unit) {
         db.collection(consultations).whereEqualTo("doctorId",userId)
                 .addSnapshotListener { value, error ->

@@ -51,7 +51,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/cardIvDoctorProfile"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp" />
+            android:layout_marginEnd="20dp"
+            android:paddingBottom="10dp"
+            tools:listitem="@layout/item_old_consultation_request"/>
 
         <org.mmtextview.components.MMTextView
             android:id="@+id/tvConsultationHistory"
@@ -61,7 +63,8 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_below="@id/rViewConsultationRequestList"
-            android:layout_marginStart="20dp"/>
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"/>
         
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rViewConsultationHistoryList"

@@ -23,6 +23,7 @@ class ChatPresenterImpl : AbstractBasePresenter<ChatView>(),ChatPresenter {
         getConsultationCaseSummaryAndPatientGeneralInfo(patientId,consultationId)
         getConsultationPrescription(consultationId)
         getMessageList(consultationId)
+        getConsultation(consultationId)
     }
 
     override fun sendMessage(
@@ -55,6 +56,14 @@ class ChatPresenterImpl : AbstractBasePresenter<ChatView>(),ChatPresenter {
 
     override fun navigateToMedicalHistoryActivity(patientName: String,patientBd : String) {
         mView?.openMedicalHistory(conId,patientName, patientBd)
+    }
+
+    private fun getConsultation(consultationId: String) {
+        mModel.getConsultationByIdFromNetwork(consultationId,{
+            if (it.finished){
+                mView?.disableMessaging()
+            }
+        },{})
     }
 
     private fun getMessageList(consultationId: String){
