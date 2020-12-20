@@ -9,21 +9,23 @@ import com.nhz.shared.mvp.presenters.AbstractBasePresenter
 class OrderMedicinePresenterImpl : AbstractBasePresenter<OrderMedicineView>(),OrderMedicinePresenter {
 
     private var totalPrice : Int = 0
+    private var conId : String = ""
     private var prescriptionList : MutableList<PrescriptionVO> = mutableListOf()
 
     override fun onUiReady(consultationId: String) {
+        conId = consultationId
         getConsultationPrescription(consultationId)
     }
 
     override fun addCheckOut(address : String) {
         mModel.getPatientByPatientIdAndSaveToDatabase(mAuthModel.getUserToken(),{patient ->
-            mModel.checkOut(patient.userId, CheckOutVO(
+            mModel.checkOut(conId, CheckOutVO(
                 patient = patient,
                 address = address,
                 total_price = totalPrice,
             ))
             prescriptionList.forEach{
-                mModel.checkOutPrescription(patient.userId,it)
+                mModel.checkOutPrescription(conId,it)
             }
         },{})
     }

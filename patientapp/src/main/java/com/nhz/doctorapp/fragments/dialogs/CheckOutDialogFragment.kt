@@ -31,13 +31,19 @@ class CheckOutDialogFragment : DialogFragment(),CheckOutView {
     private lateinit var mAdapter : CheckOutMedicineListAdapter
     private lateinit var mLayoutManager : LinearLayoutManager
     private lateinit var mPresenter : CheckOutPresenter
+    private var mConsultationId : String = ""
 
     companion object{
 
         const val TAG_CHECK_OUT = "TAG_CHECK_OUT"
+        const val CONSULTATION_ID = "CONSULTATION_ID"
 
-        fun newInstance() : CheckOutDialogFragment{
-            return  CheckOutDialogFragment()
+        fun newInstance(consultationId : String) : CheckOutDialogFragment{
+            return  CheckOutDialogFragment().apply {
+                val bundle = Bundle()
+                bundle.putString(CONSULTATION_ID,consultationId)
+                arguments = bundle
+            }
         }
     }
 
@@ -59,7 +65,7 @@ class CheckOutDialogFragment : DialogFragment(),CheckOutView {
         setUpPresenter()
         setUpRecyclerView()
 
-        mPresenter.onUiReady()
+        mPresenter.onUiReady(mConsultationId)
     }
 
     override fun onStart() {
@@ -67,6 +73,13 @@ class CheckOutDialogFragment : DialogFragment(),CheckOutView {
         btnCheckOut.setOnClickListener {
             startActivity(MainActivity.newIntent(view?.context!!))
             dismiss()
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            mConsultationId = it.getString(CONSULTATION_ID,"")
         }
     }
 

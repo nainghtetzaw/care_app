@@ -5,6 +5,7 @@ import com.nhz.shared.mvp.presenters.BasePresenter
 
 interface CheckOutPresenter : BasePresenter<CheckOutView> {
 
-    fun onUiReady()
+    fun onUiReady(consultationId : String)
+//    fun finishCheckOut()
 
 }

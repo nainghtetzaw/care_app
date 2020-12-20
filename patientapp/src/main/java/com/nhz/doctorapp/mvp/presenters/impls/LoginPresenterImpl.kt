@@ -22,7 +22,7 @@ class LoginPresenterImpl : AbstractBasePresenter<LoginView>(),LoginPresenter {
     }
 
     override fun isAlreadyLoginOrNot() {
-        if (mAuthModel.getUserToken() != null){
+        if (mAuthModel.getUserToken().isNullOrEmpty()){
             mView?.autoLogin()
         }
     }

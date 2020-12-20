@@ -19,7 +19,7 @@ import com.nhz.doctorapp.mvp.views.ProfileView
 import com.nhz.shared.data.vos.PatientVO
 
 
-class ProfileFragment : Fragment(),ProfileView {
+class  ProfileFragment : Fragment(),ProfileView {
 
     private lateinit var ivProfileBack : ImageView
     private lateinit var ivEditProfile : ImageView

@@ -19,7 +19,6 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(),HomePresenter {
     override fun onUiReady(context: Context, lifecycleOwner: LifecycleOwner) {
         getConsultationRequestsBySpecialityId()
         getConsultationHistory()
-//        mView?.showOrHideEmptyView()
     }
 
     override fun onTapAcceptRequest(requestVO: ConsultationRequestVO) {
@@ -41,7 +40,7 @@ class HomePresenterImpl : AbstractBasePresenter<HomeView>(),HomePresenter {
     }
 
     override fun onTapRemoveRequest(id: String) {
-        requestList.removeIf { it.doctorId == id }
+        requestList.removeIf { it.patient?.userId == id }
         mView?.showConsultationRequestData(requestList,doctorInfo.userId)
     }
 

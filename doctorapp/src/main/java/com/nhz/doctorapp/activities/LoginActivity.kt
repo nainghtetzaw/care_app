@@ -39,8 +39,6 @@ class LoginActivity : AppCompatActivity(),LoginView {
         tvSignUp = findViewById(R.id.tvSignUp)
         setUpPresenter()
 
-//        mPresenter.isAlreadyLoginOrNot()
-
         btnLogin.setOnClickListener {
             if (etInputEmail.text.toString() != "" && etInputPassword.text.toString() != ""){
                 mPresenter.login(etInputEmail.text.toString(),etInputPassword.text.toString(),this)
@@ -52,6 +50,11 @@ class LoginActivity : AppCompatActivity(),LoginView {
         tvSignUp.setOnClickListener {
             mPresenter.navigateToSignUpPage()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mPresenter.isAlreadyLoginOrNot()
     }
 
     override fun onTapLogin() {

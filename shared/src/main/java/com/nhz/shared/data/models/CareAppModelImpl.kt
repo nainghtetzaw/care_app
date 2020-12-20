@@ -334,4 +334,8 @@ object CareAppModelImpl : BaseModel(),CareAppModel {
     override fun deleteMedicine(name: String, consultationId: String) {
         mFirebaseApi.deleteMedicine(name,consultationId)
     }
+
+//    override fun deleteCheckOutPrescription(userId: String) {
+//        mFirebaseApi.
+//    }
 }

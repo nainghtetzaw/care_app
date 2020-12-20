@@ -65,4 +65,5 @@ interface CareAppModel {
 
     fun deleteConsultationRequest(id : String)
     fun deleteMedicine(name : String,consultationId : String)
+//    fun deleteCheckOutPrescription(userId : String)
 }

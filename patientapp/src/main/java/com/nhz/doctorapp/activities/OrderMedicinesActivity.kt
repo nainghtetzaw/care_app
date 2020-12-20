@@ -60,7 +60,7 @@ class OrderMedicinesActivity : AppCompatActivity(),OrderMedicineView {
         btnOrder.setOnClickListener {
             if (etInputAddress.text.toString() != "" || etOrderState.text.toString() != "" || etTownShip.text.toString() != ""){
                 mPresenter.addCheckOut("${etInputAddress.text},${etTownShip.text},${etOrderState.text}")
-                showCheckOutDialogFragment()
+                showCheckOutDialogFragment(consultationId!!)
             }else {
                 Toast.makeText(this,"Please input your address",Toast.LENGTH_LONG).show()
             }
@@ -77,8 +77,8 @@ class OrderMedicinesActivity : AppCompatActivity(),OrderMedicineView {
         mPresenter.initPresenter(this)
     }
 
-    private fun showCheckOutDialogFragment(){
-        checkoutDialogFragment = CheckOutDialogFragment.newInstance()
+    private fun showCheckOutDialogFragment(consultationId: String){
+        checkoutDialogFragment = CheckOutDialogFragment.newInstance(consultationId)
         checkoutDialogFragment.show(supportFragmentManager,CheckOutDialogFragment.TAG_CHECK_OUT)
     }
 
